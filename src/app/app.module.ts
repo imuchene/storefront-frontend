@@ -5,8 +5,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { StoreModule } from '@ngrx/store';
-import { shopReducer } from './store/reducer';
 import { HttpClientModule } from '@angular/common/http';
+import { booksReducer } from './state/books.reducer';
+import { collectionReducer } from './state/collection.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ shop: shopReducer }),
+    StoreModule.forRoot({ books: booksReducer, collection: collectionReducer }),
     HttpClientModule,
   ],
   providers: [],

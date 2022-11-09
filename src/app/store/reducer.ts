@@ -1,6 +1,3 @@
-import { createReducer } from "@ngrx/store";
-import { on } from "events";
-import { Action } from "rxjs/internal/scheduler/Action";
 import { ActionsUnion, ActionTypes, Product } from "./actions";
 
 
