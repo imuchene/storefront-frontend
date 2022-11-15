@@ -5,18 +5,20 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { StoreModule } from '@ngrx/store';
-import { shopReducer } from './store/reducer';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductComponent } from './product/product.component';
+import { addProductReducer } from './reducers/product.reducer';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ shop: shopReducer }),
+    StoreModule.forRoot({ product: addProductReducer }),
     HttpClientModule,
   ],
   providers: [],
