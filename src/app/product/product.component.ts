@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AddProductAction, DeleteProductAction } from '../reducers/product.reducer';
 import { Product } from './product.model';
 import { ProductState } from './product.state';
 import {v4 as uuid } from 'uuid'; 
+import { AddProductAction, DeleteProductAction } from '../actions/product.action';
 
 @Component({
   selector: 'app-product',
