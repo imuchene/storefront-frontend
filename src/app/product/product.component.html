@@ -21,14 +21,17 @@
 <table class="table table-hover" *ngIf="(products | async)?.length">
   <thead>
     <tr>
+      <td>Product ID</td>
       <td>Product Name</td>
       <td>Product Price</td>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let product of products | async">
+      <td>{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>
+      <td><a href="#" (click)="deleteProduct(product.id)">Delete</a></td>
     </tr>
   </tbody>
 </table>

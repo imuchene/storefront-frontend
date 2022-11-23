@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AddProductAction, DeleteItemAction } from '../reducers/product.reducer';
 import { Product } from './product.model';
 import { ProductState } from './product.state';
+import {v4 as uuid } from 'uuid'; 
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
 
   products: Observable<Product[]>;
 
@@ -18,16 +20,15 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct(name: string, price: string){
-    this.store.dispatch({
-      type: 'ADD_PRODUCT',
-      payload: <Product>{
-        name: name,
-        price: Number(price),
-      }
-    });
+    const product: Product = {
+      id: uuid(),
+      name: name,
+      price: Number(price)
+    };
+    this.store.dispatch(new AddProductAction(product));
   }
 
-  ngOnInit(): void {
+  deleteProduct(id: string){
+    this.store.dispatch(new DeleteItemAction(id));
   }
-
 }
