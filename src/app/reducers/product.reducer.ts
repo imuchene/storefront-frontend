@@ -1,25 +1,6 @@
-import { Action } from "@ngrx/store";
+import { Actions } from "../actions/product.action";
+import { ProductActionTypes } from "../enums/product.enum";
 import { Product } from "../product/product.model";
-
-
-export enum ProductActionTypes {
-  ADD_PRODUCT = '[Product] ADD PRODUCT',
-  DELETE_PRODUCT = '[Product] DELETE PRODUCT'
-}
-
-export class AddProductAction implements Action {
-  readonly type = ProductActionTypes.ADD_PRODUCT;
-
-  constructor(public payload: Product){}
-}
-
-export class DeleteProductAction implements Action {
-  readonly type = ProductActionTypes.DELETE_PRODUCT;
-
-  constructor(public payload: string){}
-}
-
-export type Actions = | AddProductAction | DeleteProductAction
 
 
 export function addProductReducer (state: Product[] = [], action: Actions): Product[] {
