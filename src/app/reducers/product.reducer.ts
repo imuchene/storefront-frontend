@@ -13,13 +13,13 @@ export class AddProductAction implements Action {
   constructor(public payload: Product){}
 }
 
-export class DeleteItemAction implements Action {
+export class DeleteProductAction implements Action {
   readonly type = ProductActionTypes.DELETE_PRODUCT;
 
   constructor(public payload: string){}
 }
 
-export type Actions = | AddProductAction | DeleteItemAction
+export type Actions = | AddProductAction | DeleteProductAction
 
 
 export function addProductReducer (state: Product[] = [], action: Actions): Product[] {
