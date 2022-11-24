@@ -1,16 +1,14 @@
-import { Actions } from "../actions/product.action";
-import { ProductActionTypes } from "../enums/product.enum";
+import { createReducer, on } from "@ngrx/store";
+import { addProductAction, deleteProductAction } from "../actions/product.actions";
 import { Product } from "../product/product.model";
 
+const initialState: Product[] = [];
 
-export function ProductReducer (state: Product[] = [], action: Actions): Product[] {
-  switch (action.type) {
-    case ProductActionTypes.ADD_PRODUCT:
-      return [...state, action.payload];
-    case ProductActionTypes.DELETE_PRODUCT:
-      return state.filter(product => product.id !== action.payload);
-  
-    default:
-      return state;
-  }
-}
+export const productReducer = createReducer(initialState,
+  on(addProductAction, (state, { product}) => {
+    return [...state, product]
+  }),
+  on(deleteProductAction, (state, { productId }) => {
+    return state.filter(product => product.id !== productId);
+  })
+)

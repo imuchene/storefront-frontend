@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from './product.model';
 import { ProductState } from './product.state';
 import {v4 as uuid } from 'uuid'; 
-import { AddProductAction, DeleteProductAction } from '../actions/product.action';
+import { addProductAction, deleteProductAction } from '../actions/product.actions';
 
 @Component({
   selector: 'app-product',
@@ -25,10 +25,12 @@ export class ProductComponent {
       name: name,
       price: Number(price)
     };
-    this.store.dispatch(new AddProductAction(product));
+
+    
+    this.store.dispatch(addProductAction({ product: product}));
   }
 
   deleteProduct(id: string){
-    this.store.dispatch(new DeleteProductAction(id));
+    this.store.dispatch(deleteProductAction({ productId: id}));
   }
 }
