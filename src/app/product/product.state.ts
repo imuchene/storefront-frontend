@@ -1,5 +1,7 @@
 import { Product } from "./product.model";
 
 export interface ProductState {
-  readonly product: Product[];
+  products: Product[];
+  loading: boolean;
+  error: Error;
 }

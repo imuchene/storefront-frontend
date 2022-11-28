@@ -16,7 +16,7 @@ export class ProductComponent {
   products: Observable<Product[]>;
 
   constructor(private store: Store<ProductState>) { 
-    this.products = this.store.select(state => state.product);
+    this.products = this.store.select(state => state.products);
   }
 
   addProduct(name: string, price: string){
