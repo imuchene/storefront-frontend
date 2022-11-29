@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from './product.model';
@@ -13,10 +13,10 @@ import { addProductAction, deleteProductAction } from '../actions/product.action
 })
 export class ProductComponent {
 
-  products: Observable<Product[]>;
+  cart: Observable<Product[]>;
 
   constructor(private store: Store<ProductState>) { 
-    this.products = this.store.select(state => state.products);
+    this.cart = this.store.select(state => state.products);
   }
 
   addProduct(name: string, price: string){

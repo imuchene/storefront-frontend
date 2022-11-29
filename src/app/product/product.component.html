@@ -12,13 +12,13 @@
       </div>
 
       <div class="form-group">
-        <button type="button" (click)="addProduct(productName.value, productPrice.value)" class="btn btn-primary">Add Product</button>
+        <button type="button" (click)="addProduct(productName.value, productPrice.value)" class="btn btn-primary">Add Product To Cart</button>
       </div>
     </form>
   </div>
 </div>
 
-<table class="table table-hover" *ngIf="(products | async)?.length">
+<table class="table table-hover" *ngIf="(cart | async)?.length">
   <thead>
     <tr>
       <td>Product ID</td>
@@ -27,7 +27,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products | async">
+    <tr *ngFor="let product of cart | async">
       <td>{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>

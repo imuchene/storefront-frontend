@@ -3,6 +3,7 @@ import { addProductAction, deleteProductAction, loadProductsAction, loadProducts
 import { ProductState } from "../product/product.state";
 
 const initialState: ProductState = {
+  cart: [],
   products: [],
   loading: false,
   error: new Error(undefined)
@@ -10,10 +11,10 @@ const initialState: ProductState = {
 
 export const productReducer = createReducer(initialState,
   on(addProductAction, (state, { product}) => {
-    return { ...state, products: [...state.products, product], loading: true}
+    return { ...state, cart: [...state.cart, product], loading: false}
   }),
   on(deleteProductAction, (state, { productId }) => {
-    return {...state, products: state.products.filter(product => product.id !== productId), loading: false };
+    return {...state, cart: state.cart.filter(product => product.id !== productId), loading: false };
   }),
   on(loadProductsAction, (state) => {
     return {

@@ -8,6 +8,8 @@ import { ProductComponent } from './product/product.component';
 import { productReducer } from './reducers/product.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './effects/product.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({ product: productReducer }),
+    EffectsModule.forRoot([ProductEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
