@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
-import { productReducer } from './reducers/product.reducer';
+import { reducers } from './reducers/product.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
@@ -18,7 +18,7 @@ import { ProductEffects } from './effects/product.effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ product: productReducer }),
+    StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([ProductEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

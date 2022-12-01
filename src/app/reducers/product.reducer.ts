@@ -1,4 +1,4 @@
-import { createReducer, on } from "@ngrx/store";
+import { ActionReducerMap, createReducer, on } from "@ngrx/store";
 import { addProductAction, deleteProductAction, loadProductsAction, loadProductsFailureAction, loadProductsSuccessAction } from "../actions/product.actions";
 import { ProductState } from "../product/product.state";
 
@@ -37,3 +37,11 @@ export const productReducer = createReducer(initialState,
     }
   })
 )
+
+export const reducers: ActionReducerMap<AppState> = {
+  products: productReducer,
+}
+
+export interface AppState {
+  products: ProductState
+}
