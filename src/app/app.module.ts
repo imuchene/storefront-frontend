@@ -10,6 +10,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './effects/product.effects';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +30,11 @@ import { ProductEffects } from './effects/product.effects';
     EffectsModule.forRoot([ProductEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

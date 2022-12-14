@@ -33,6 +33,7 @@ export class ProductComponent {
       name: name,
       unitPrice: Number(price),
       description: 'Test Description',
+      imageUrl: ''
     };
 
     

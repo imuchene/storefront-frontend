@@ -36,21 +36,23 @@
   </tbody>
 </table>
 
-<table class="table table-hover" *ngIf="(products | async)?.length">
-  <thead>
-    <tr>
-      <td>Product ID</td>
-      <td>Product Name</td>
-      <td>Product Price</td>
-      <td>Product Description</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of products | async">
-      <td>{{product.id}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.unitPrice}}</td>
-      <td>{{product.description}}</td>
-    </tr>
-  </tbody>
-</table>
+<mat-grid-list cols="3" >
+  <mat-grid-tile *ngFor="let product of products | async">
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-subtitle>Price (Per Kg): ${{product.unitPrice}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{product.imageUrl}}" alt="{{product.name}}">
+      <mat-card-content>
+        <p>{{product.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Add to Cart</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>
+
