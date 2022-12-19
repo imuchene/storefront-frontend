@@ -18,24 +18,6 @@
   </div>
 </div>
 
-<table class="table table-hover" *ngIf="(cart | async)?.length">
-  <thead>
-    <tr>
-      <td>Product ID</td>
-      <td>Product Name</td>
-      <td>Product Price</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of cart | async">
-      <td>{{product.id}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.unitPrice}}</td>
-      <td><a href="#" (click)="deleteProduct(product.id)">Delete</a></td>
-    </tr>
-  </tbody>
-</table>
-
 <mat-grid-list cols="3" >
   <mat-grid-tile *ngFor="let product of products | async">
 
