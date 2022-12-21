@@ -26,16 +26,7 @@ export class ProductComponent {
     this.products = this.store.select(state => state.products.products);
   }
 
-  addProduct(name: string, price: string){
-    const product: Product = {
-      id: uuid(),
-      name: name,
-      unitPrice: Number(price),
-      description: 'Test Description',
-      imageUrl: ''
-    };
-
-    
+  addProduct(product: Product){
     this.store.dispatch(addProductAction({ product: product}));
   }
 

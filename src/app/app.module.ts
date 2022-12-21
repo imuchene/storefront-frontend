@@ -17,6 +17,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { CartComponent } from './cart/cart.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
  
 
 
@@ -38,7 +40,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatButtonModule,
     MatGridListModule,
     MatCardModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTableModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

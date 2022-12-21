@@ -4,9 +4,9 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="example-toolbar">Storefront Frontend</span>
+    <span class="example-toolbar" routerLink="">Storefront Frontend</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="test()">
       <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
@@ -14,4 +14,5 @@
     </button>
   </mat-toolbar>
 </p>
-<app-product></app-product>
+
+<router-outlet></router-outlet>

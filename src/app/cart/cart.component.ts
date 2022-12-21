@@ -13,9 +13,14 @@ import { AppState } from '../reducers/product.reducer';
 export class CartComponent {
 
   cart: Observable<Product[]>;
+  dataSource: Product[];
+  displayedColumns: string[] = ['ID', 'Name', 'Price'];
 
   constructor(private store: Store<AppState>) { 
     this.cart = this.store.select(state => state.products.cart);
+    this.cart.subscribe(res => {
+      this.dataSource = res;
+    });
   }
 
 
