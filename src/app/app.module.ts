@@ -19,6 +19,7 @@ import { CartComponent } from './cart/cart.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
  
 
 
@@ -43,6 +44,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatBadgeModule,
     MatTableModule,
     MatDividerModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
