@@ -44,12 +44,12 @@ export class CartComponent {
     // Create an array of cart items
     const newCartItems: CartItem[] = [];
 
-    for (const entry of uniqueProducts){
+    for (const product of uniqueProducts){
         const testCartItem = new CartItem({
-        name: entry.name,
-        quantity: counts[entry.id],
-        unitPrice: entry.unitPrice,
-        subTotal: (counts[entry.id]) * entry.unitPrice
+        name: product.name,
+        quantity: counts[product.id],
+        unitPrice: product.unitPrice,
+        subTotal: (counts[product.id] * product.unitPrice)
       });
       newCartItems.push(testCartItem)
     }
