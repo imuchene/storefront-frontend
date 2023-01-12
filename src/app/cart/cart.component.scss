@@ -1,3 +1,37 @@
 table {
   width: 100%;
 }
+
+section {
+  display: table;
+}
+
+.cart-table {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.mat-divider {
+  padding-bottom: 20px;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.mat-raised-button {
+  margin-left: 10px;
+}

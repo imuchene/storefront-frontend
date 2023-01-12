@@ -14,15 +14,20 @@ import { CartItem } from './cart-item.model';
 export class CartComponent {
 
   cart: Observable<Product[]>;
-  dataSource: Product[];
-  displayedColumns: string[] = ['ID', 'Name', 'Price', 'Action'];
+  dataSource: CartItem[];
+  displayedColumns: string[] = ['Name', 'Quantity', 'Price', 'Subtotal', 'Action'];
 
   constructor(private store: Store<AppState>) { 
     this.cart = this.store.select(state => state.products.cart);
     this.cart.subscribe(res => {
-      this.dataSource = res;
      
-      this.countAndGroupLikeItems(this.dataSource);
+      this.dataSource = this.countAndGroupLikeItems(res);
+
+      const totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
+      const totalValue = this.dataSource.reduce((total, item) => item.subTotal + total, 0);
+
+      console.log('total items', totalItems);
+      console.log('total value', totalValue);
 
     });
   }
@@ -46,10 +51,11 @@ export class CartComponent {
 
     for (const product of uniqueProducts){
         const testCartItem = new CartItem({
+        id: product.id,
         name: product.name,
         quantity: counts[product.id],
         unitPrice: product.unitPrice,
-        subTotal: (counts[product.id] * product.unitPrice)
+        subTotal: Number((counts[product.id] * product.unitPrice).toFixed(2))
       });
       newCartItems.push(testCartItem)
     }
