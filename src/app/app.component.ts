@@ -23,7 +23,7 @@ export class AppComponent {
     this.totalValue.subscribe(res => console.log('total value in app component', res));
   }
 
-  test(){
+  loadCart(){
     this.router.navigateByUrl('cart');
   }
 }
