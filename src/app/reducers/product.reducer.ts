@@ -1,6 +1,8 @@
 import { ActionReducerMap, createReducer, on } from "@ngrx/store";
 import { addProductAction, deleteProductAction, loadProductsAction, loadProductsFailureAction, loadProductsSuccessAction } from "../actions/product.actions";
-import { ProductState } from "../product/product.state";
+import { CartState } from "../states/cart.state";
+import { ProductState } from "../states/product.state";
+import { cartReducer } from "./cart-item.reducer";
 
 const initialState: ProductState = {
   cart: [],
@@ -36,12 +38,14 @@ export const productReducer = createReducer(initialState,
       loading: false,
     }
   })
-)
+);
 
 export const reducers: ActionReducerMap<AppState> = {
   products: productReducer,
+  carts: cartReducer,
 }
 
 export interface AppState {
-  products: ProductState
+  products: ProductState;
+  carts: CartState;
 }

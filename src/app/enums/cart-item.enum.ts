@@ -1,3 +1,3 @@
 export enum CartActionTypes {
-  LOAD_TOTAL_ITEMS = 'LOAD TOTAL ITEMS'
+  TOTAL_ITEMS = 'TOTAL ITEMS'
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from './product.model';
-import { ProductState } from './product.state';
+import { ProductState } from '../states/product.state';
 import {v4 as uuid } from 'uuid'; 
 import { addProductAction, loadProductsAction } from '../actions/product.actions';
 import { AppState } from '../reducers/product.reducer';

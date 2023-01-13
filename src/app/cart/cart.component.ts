@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { totalItemsAction } from '../actions/cart-item.actions';
 import { deleteProductAction } from '../actions/product.actions';
 import { Product } from '../product/product.model';
 import { AppState } from '../reducers/product.reducer';
@@ -28,6 +29,8 @@ export class CartComponent {
 
       console.log('total items', totalItems);
       console.log('total value', totalValue);
+
+      this.store.dispatch(totalItemsAction({ totalItems: totalItems, totalValue: totalValue}));
 
     });
   }
