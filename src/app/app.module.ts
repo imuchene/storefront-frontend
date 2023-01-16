@@ -20,6 +20,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
  
 
 
@@ -27,7 +28,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   declarations: [
     AppComponent,
     ProductComponent,
-    CartComponent
+    CartComponent,
+    PaymentFormComponent
   ],
   imports: [
     BrowserModule,

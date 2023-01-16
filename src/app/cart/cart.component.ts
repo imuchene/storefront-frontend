@@ -17,6 +17,8 @@ export class CartComponent {
   cart: Observable<Product[]>;
   dataSource: CartItem[];
   displayedColumns: string[] = ['Name', 'Quantity', 'Price', 'Subtotal', 'Action'];
+  totalItems: number;
+  totalValue: number;
 
   constructor(private store: Store<AppState>) { 
     this.cart = this.store.select(state => state.products.cart);
@@ -24,13 +26,10 @@ export class CartComponent {
      
       this.dataSource = this.countAndGroupLikeItems(res);
 
-      const totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
-      const totalValue = this.dataSource.reduce((total, item) => item.subTotal + total, 0);
+      this.totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
+      this.totalValue = Number(this.dataSource.reduce((total, item) => item.subTotal + total, 0).toFixed(2));
 
-      console.log('total items', totalItems);
-      console.log('total value', totalValue);
-
-      this.store.dispatch(totalItemsAction({ totalItems: totalItems, totalValue: totalValue}));
+      this.store.dispatch(totalItemsAction({ totalItems: this.totalItems, totalValue: this.totalValue}));
 
     });
   }
