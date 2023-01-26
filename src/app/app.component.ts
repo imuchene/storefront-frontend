@@ -16,11 +16,10 @@ export class AppComponent {
   navTotalItems: number;
 
   constructor(private router: Router, private store: Store<AppState>){
-    this.totalItems = this.store.select(state => state.carts.totalItems);
+    this.totalItems = this.store.select(state => state.products.count);
     this.totalValue = this.store.select(state => state.carts.totalValue);
 
     this.totalItems.subscribe(res => this.navTotalItems = res);
-    this.totalValue.subscribe(res => console.log('total value in app component', res));
   }
 
   loadCart(){

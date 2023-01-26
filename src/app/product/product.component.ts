@@ -27,7 +27,7 @@ export class ProductComponent {
   }
 
   addProduct(product: Product){
-    this.store.dispatch(addProductAction({ product: product}));
+    this.store.dispatch(addProductAction({ product: product, count: 1}));
   }
 
 

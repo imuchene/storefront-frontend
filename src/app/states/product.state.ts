@@ -5,4 +5,5 @@ export interface ProductState {
   products: Product[];
   loading: boolean;
   error: Error;
+  count: number;
 }

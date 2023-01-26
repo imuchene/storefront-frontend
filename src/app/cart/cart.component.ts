@@ -19,11 +19,16 @@ export class CartComponent {
   displayedColumns: string[] = ['Name', 'Quantity', 'Price', 'Subtotal', 'Action'];
   totalItems: number;
   totalValue: number;
+  count: number;
 
   constructor(private store: Store<AppState>) { 
     this.cart = this.store.select(state => state.products.cart);
+    
+    
     this.cart.subscribe(res => {
-     
+
+      
+
       this.dataSource = this.countAndGroupLikeItems(res);
 
       this.totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
@@ -35,6 +40,8 @@ export class CartComponent {
   }
 
 
+
+
   deleteProduct(id: string){
     this.store.dispatch(deleteProductAction({ productId: id}));
   }
@@ -42,11 +49,11 @@ export class CartComponent {
   countAndGroupLikeItems(products: Product[]): CartItem[] {
     // Get a count of all the products added by the customer
     const counts:any = {};
-    products.forEach( product => counts[product.id] = (counts[product.id] || 0) + 1)
+    products.forEach( product => counts[product.id] = (counts[product.id] || 0) + 1);
 
     // Remove all duplicate products from the cart
-    const uniqueProducts = products.filter(this.onlyUnique);
 
+    const uniqueProducts = products.filter((item, pos, self) => self.findIndex(v => v.id === item.id) === pos);
     
     // Create an array of cart items
     const newCartItems: CartItem[] = [];
@@ -59,17 +66,12 @@ export class CartComponent {
         unitPrice: product.unitPrice,
         subTotal: Number((counts[product.id] * product.unitPrice).toFixed(2))
       });
-      newCartItems.push(testCartItem)
+      newCartItems.push(testCartItem);
     }
 
 
    return newCartItems;
   }
 
-  onlyUnique(value:any, index:any,self:any){
-    return self.indexOf(value) === index;
-  }
-
-  // TODO: Get total amount and total quantity from the cart
 
 }

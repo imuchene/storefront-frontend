@@ -8,15 +8,19 @@ const initialState: ProductState = {
   cart: [],
   products: [],
   loading: false,
-  error: new Error(undefined)
+  error: new Error(undefined),
+  count: 0
 }
+
+
 
 export const productReducer = createReducer(initialState,
   on(addProductAction, (state, { product}) => {
-    return { ...state, cart: [...state.cart, product], loading: false}
+    return { ...state, cart: [...state.cart, product], loading: false, count: state.count + 1}
   }),
   on(deleteProductAction, (state, { productId }) => {
-    return {...state, cart: state.cart.filter(product => product.id !== productId), loading: false };
+    const remainingProducts = state.cart.filter(product => product.id !== productId);
+    return {...state, cart: remainingProducts, loading: false, count: remainingProducts.length };
   }),
   on(loadProductsAction, (state) => {
     return {

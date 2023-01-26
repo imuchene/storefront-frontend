@@ -4,7 +4,7 @@ import { Product } from "../product/product.model";
 
 export const addProductAction = createAction(
   ProductActionTypes.ADD_PRODUCT,
-  props<{ product: Product }>()
+  props<{ product: Product, count: number }>()
 );
 
 export const deleteProductAction = createAction(
