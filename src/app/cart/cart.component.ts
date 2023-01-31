@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { totalItemsAction } from '../actions/cart-item.actions';
 import { deleteProductAction } from '../actions/product.actions';
+import { LoginFormComponent } from '../login-form/login-form.component';
 import { Product } from '../product/product.model';
 import { AppState } from '../reducers/product.reducer';
 import { CartItem } from './cart-item.model';
@@ -21,29 +23,31 @@ export class CartComponent {
   totalValue: number;
   count: number;
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<AppState>, public dialog: MatDialog) { 
     this.cart = this.store.select(state => state.products.cart);
     
     
     this.cart.subscribe(res => {
-
-      
-
       this.dataSource = this.countAndGroupLikeItems(res);
-
       this.totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
       this.totalValue = Number(this.dataSource.reduce((total, item) => item.subTotal + total, 0).toFixed(2));
-
       this.store.dispatch(totalItemsAction({ totalItems: this.totalItems, totalValue: this.totalValue}));
-
     });
   }
 
 
-
-
   deleteProduct(id: string){
     this.store.dispatch(deleteProductAction({ productId: id}));
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginFormComponent, {
+      height: '400px',
+      width: '600px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    })
   }
 
   countAndGroupLikeItems(products: Product[]): CartItem[] {

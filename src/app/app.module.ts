@@ -10,26 +10,21 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './effects/product.effects';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
 import { CartComponent } from './cart/cart.component';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatTableModule } from '@angular/material/table';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
- 
-
-
+import { MaterialModule } from './material.module';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
     CartComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    LoginFormComponent,
+    RegistrationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -38,15 +33,10 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
     EffectsModule.forRoot([ProductEffects]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatCardModule,
-    MatBadgeModule,
-    MatTableModule,
-    MatDividerModule,
-    MatTooltipModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
