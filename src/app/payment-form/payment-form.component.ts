@@ -12,10 +12,10 @@ export class PaymentFormComponent {
   chartOptions: Highcharts.Options = {
     series: [{
       data: [1, 2, 3],
-      type: 'line'
+      type: 'column'
     }],
     plotOptions: {
-      line: {
+      column: {
         dataLabels: {
           enabled: true
         }
