@@ -1,16 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
   styleUrls: ['./payment-form.component.scss']
 })
-export class PaymentFormComponent implements OnInit {
+export class PaymentFormComponent {
+
+  Highcharts: typeof Highcharts = Highcharts;
+  chartOptions: Highcharts.Options = {
+    series: [{
+      data: [1, 2, 3],
+      type: 'line'
+    }],
+    plotOptions: {
+      line: {
+        dataLabels: {
+          enabled: true
+        }
+      }
+    }
+  };
 
   constructor() { }
-
-  ngOnInit(): void {
-    console.log('payment form');
-  }
 
 }

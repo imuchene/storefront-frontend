@@ -18,6 +18,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { HighchartsChartModule } from 'highcharts-angular'
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { CookieService } from 'ngx-cookie-service';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HighchartsChartModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
