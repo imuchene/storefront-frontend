@@ -1,6 +1,7 @@
 <br/>
 <br/>
-<p>payment-form works!</p>
+<div id="printTable">
+  <p>payment-form works!</p>
 
 <highcharts-chart 
   [Highcharts]="Highcharts"
@@ -8,3 +9,7 @@
 
   style="width: 100%; height: 400px; display: block;"
 ></highcharts-chart>
+</div>
+
+<button type="button" id="printBtn" class="btn waves-effect waves-light btn-primary btn-print-invoice m-b-10"
+(click)="printHTML2('printTable', ['printBtn','cancelBtn'])">Print</button>

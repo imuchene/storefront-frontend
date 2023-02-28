@@ -25,4 +25,21 @@ export class PaymentFormComponent {
 
   constructor() { }
 
+  printHTML2(printArea: string, printBtns?: string[]) {
+    
+    const printContent = document.getElementById(printArea)!;
+    // if (printBtns) {
+    //   printBtns.forEach(btn => document.getElementById(btn)!.style.display = 'none');
+    // }
+    const printWindow = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+    printWindow!.document.write(printContent.innerHTML);
+    printWindow!.document.close();
+    printWindow!.focus();
+    printWindow!.print();
+    printWindow!.close();
+    printBtns!.forEach(btn => {
+      document.getElementById(btn)!.style.display = 'inline-block';
+    });
+  }
+
 }
