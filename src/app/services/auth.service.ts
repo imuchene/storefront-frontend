@@ -13,11 +13,13 @@ export class AuthService {
     ) { }
 
   login(email: string, password: string): Observable<HttpResponse<any>>{
+
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
     };
     
     return this.http.post<any>(environment.baseUrl + 'auth/login', { email: email, password: password}, httpOptions);
+
   }
 
 }

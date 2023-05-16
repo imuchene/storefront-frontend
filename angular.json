@@ -77,6 +77,10 @@
             },
             "development": {
               "browserTarget": "storefront-frontend:build:development"
+            },
+            "options": {
+              "sslKey": "localhost.key",
+              "sslCert": "localhost.crt"
             }
           },
           "defaultConfiguration": "development"

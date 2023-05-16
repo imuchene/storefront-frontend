@@ -39,7 +39,10 @@ export class LoginFormComponent {
       next: (res) => {
         this.dialog.closeAll();
         this.getAuthCookie();
-        this.router.navigate(['payment']).then(res => console.log(res));
+        console.log('response', res);
+        console.log('response headers', res.headers);
+        console.log('response headers keys', res.headers.keys());
+        this.router.navigate(['payment']);
       },
       // On login failure
       error: (error: HttpErrorResponse) => {
