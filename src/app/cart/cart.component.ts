@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { totalItemsAction } from '../actions/cart-item.actions';
@@ -8,6 +8,7 @@ import { LoginFormComponent } from '../login-form/login-form.component';
 import { Product } from '../product/product.model';
 import { AppState } from '../reducers/product.reducer';
 import { CartItem } from './cart-item.model';
+import { countAndGroupLikeItems } from '../utils/count-and-group.util';
 
 @Component({
   selector: 'app-cart',
@@ -28,7 +29,7 @@ export class CartComponent {
     
     
     this.cart.subscribe(res => {
-      this.dataSource = this.countAndGroupLikeItems(res);
+      this.dataSource = countAndGroupLikeItems(res);
       this.totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
       this.totalValue = Number(this.dataSource.reduce((total, item) => item.subTotal + total, 0).toFixed(2));
       this.store.dispatch(totalItemsAction({ totalItems: this.totalItems, totalValue: this.totalValue}));
@@ -48,33 +49,6 @@ export class CartComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     })
-  }
-
-  countAndGroupLikeItems(products: Product[]): CartItem[] {
-    // Get a count of all the products added by the customer
-    const counts:any = {};
-    products.forEach( product => counts[product.id] = (counts[product.id] || 0) + 1);
-
-    // Remove all duplicate products from the cart
-
-    const uniqueProducts = products.filter((item, pos, self) => self.findIndex(v => v.id === item.id) === pos);
-    
-    // Create an array of cart items
-    const newCartItems: CartItem[] = [];
-
-    for (const product of uniqueProducts){
-        const testCartItem = new CartItem({
-        id: product.id,
-        name: product.name,
-        quantity: counts[product.id],
-        unitPrice: product.unitPrice,
-        subTotal: Number((counts[product.id] * product.unitPrice).toFixed(2))
-      });
-      newCartItems.push(testCartItem);
-    }
-
-
-   return newCartItems;
   }
 
 

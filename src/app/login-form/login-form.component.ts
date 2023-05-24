@@ -38,10 +38,6 @@ export class LoginFormComponent {
     .subscribe({
       next: (res) => {
         this.dialog.closeAll();
-        this.getAuthCookie();
-        console.log('response', res);
-        console.log('response headers', res.headers);
-        console.log('response headers keys', res.headers.keys());
         this.router.navigate(['payment']);
       },
       // On login failure
@@ -59,11 +55,6 @@ export class LoginFormComponent {
 
   routeToPayment(){
     
-  }
-
-  getAuthCookie(){
-    const authCookie = this.cookieService.get('auth-cookie');
-    console.log('auth-cookie', authCookie);
   }
 
 

@@ -18,6 +18,9 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxStripeModule } from 'ngx-stripe';
+import { StripeDialogComponent } from './stripe-dialog/stripe-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,8 @@ import { CookieService } from 'ngx-cookie-service';
     CartComponent,
     PaymentFormComponent,
     LoginFormComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    StripeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { CookieService } from 'ngx-cookie-service';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxStripeModule.forRoot('pk_test_51JNFj6GIyORaO7x3u4vzlVQJh4VdrlQa45nQVdVV8GCftT6TWYyuUG8xhD72TN6zdnwTpnJq3FZwz3FN41436Wlp009CDJriWG', { apiVersion: '2022-11-15'})
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

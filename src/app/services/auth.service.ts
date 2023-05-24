@@ -16,6 +16,7 @@ export class AuthService {
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
+      withCredentials: true,
     };
     
     return this.http.post<any>(environment.baseUrl + 'auth/login', { email: email, password: password}, httpOptions);
