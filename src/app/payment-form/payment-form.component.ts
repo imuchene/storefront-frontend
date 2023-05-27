@@ -77,7 +77,7 @@ export class PaymentFormComponent implements OnInit {
   openDialog(data: any) {
     this.dialog.open(StripeDialogComponent, {
       width: '70%',
-      height: '70%',
+      height: '60%',
       data: { data }
     });
   }

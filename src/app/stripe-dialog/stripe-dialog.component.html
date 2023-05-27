@@ -1,15 +1,19 @@
-<h1 mat-dialog-title>Finalize Payment</h1>
-<div mat-dialog-content>Add Payment Details Below:</div>
-<br />
-<ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
-  <ngx-stripe-payment
-    [elementsOptions]="elementsOptions"
-    [clientSecret]="clientSecret"
-  ></ngx-stripe-payment>
-</ng-container>
-<div mat-dialog-actions>
-  <button type="submit" mat-raised-button color="primary" (click)="pay()">
-    Pay $10
-  </button>
-  <button mat-button mat-dialog-close>Close</button>
-</div>
+<h2 mat-dialog-title>Finalize Payment</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Add Payment Details Below:</h3>
+  <br/>
+  <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
+    <ngx-stripe-payment
+      [options]="options"
+      [elementsOptions]="elementsOptions"
+      [clientSecret]="clientSecret"
+    ></ngx-stripe-payment>
+  </ng-container>
+
+</mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button type="submit" mat-raised-button color="primary" (click)="pay()">
+      Pay ${{totalAmount}}
+    </button>
+    <button mat-button [mat-dialog-close]="true">Close</button>
+  </mat-dialog-actions>  

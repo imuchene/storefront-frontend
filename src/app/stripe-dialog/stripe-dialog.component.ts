@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StripeElementsOptions } from '@stripe/stripe-js';
+import { StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
 import { Payment } from './payment';
 
@@ -9,7 +9,8 @@ import { Payment } from './payment';
   templateUrl: './stripe-dialog.component.html',
   styleUrls: ['./stripe-dialog.component.scss']
 })
-export class StripeDialogComponent implements OnInit, AfterViewInit {
+export class StripeDialogComponent implements OnInit {
+
   @ViewChild(StripePaymentElementComponent)
   stripePaymentElement: StripePaymentElementComponent;
 
@@ -20,11 +21,22 @@ export class StripeDialogComponent implements OnInit, AfterViewInit {
     },
   };
 
+  totalAmount: number;
 
   paying: boolean = false;
 
   paymentData: Payment;
+
   clientSecret: string;
+  
+  options: StripePaymentElementOptions = {
+    layout: {
+      type: 'accordion',
+      defaultCollapsed: false,
+      radios: true,
+      spacedAccordionItems: false
+    }
+  }
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -35,6 +47,7 @@ export class StripeDialogComponent implements OnInit, AfterViewInit {
 
     if (this.paymentData) {
       this.clientSecret = this.paymentData.clientSecret;
+      this.totalAmount = this.paymentData.amount;
     }
 
   }
@@ -43,16 +56,6 @@ export class StripeDialogComponent implements OnInit, AfterViewInit {
     this.elementsOptions.clientSecret = this.clientSecret;
   }
 
-  ngAfterViewInit(){
-    this.stripePaymentElement.elements?.create('payment', {
-      layout: {
-        type: 'accordion',
-        defaultCollapsed: false,
-        radios: true,
-        spacedAccordionItems: false
-      }
-    })
-  }
 
   pay() {
     this.paying = true;
@@ -60,7 +63,7 @@ export class StripeDialogComponent implements OnInit, AfterViewInit {
       .confirmPayment({
         elements: this.stripePaymentElement.elements,
         confirmParams: {
-          return_url: 'http://localhost:4200/sales',
+          return_url: 'https://localhost:4200/payment',
           payment_method_data: {
             billing_details: {
               name: this.paymentData.name
@@ -74,7 +77,7 @@ export class StripeDialogComponent implements OnInit, AfterViewInit {
           next: (result) => {
             this.paying = false;
             console.log('payment result', result);
-  
+
             if (result.error) {
               // Show the error to the customer e.g. insufficient funds
               alert(result.error.message);
