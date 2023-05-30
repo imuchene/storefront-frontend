@@ -1,16 +1,27 @@
 
 <p class="top-navbar">
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with a menu">
       <mat-icon>menu</mat-icon>
     </button>
+    <mat-menu #menu="matMenu" xPosition="after">
+      <button mat-menu-item class="menu-item">
+        <span color="primary" routerLink="/">Home</span>
+      </button>
+      <button mat-menu-item class="menu-item">
+        <span routerLink="/login">Login</span>
+      </button>
+      <button mat-menu-item class="menu-item">
+        <span routerLink="/register">Register</span>
+      </button>
+    </mat-menu>
     <span class="example-toolbar" routerLink="">Storefront Frontend</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="loadCart()">
+    <a mat-button routerLink="/login">Login</a>
+    <a mat-button routerLink="/register">Register</a>
+    <button mat-flat-button class="example-icon favorite-icon" color="primary" aria-label="Example icon-button with heart icon" (click)="loadCart()">
       <mat-icon matBadge={{navTotalItems}} matBadgeColor="warn">shopping_cart</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+      Cart
     </button>
   </mat-toolbar>
 </p>

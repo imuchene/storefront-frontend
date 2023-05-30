@@ -16,3 +16,9 @@ mat-toolbar {
 .top-navbar {
   padding-bottom: 20px;
 }
+
+.menu-item {
+  :hover, :active {
+    color: purple;
+  }
+}

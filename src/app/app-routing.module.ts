@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent},
   { path: 'login', component: LoginFormComponent},
   { path: 'payment', component: PaymentFormComponent},
-  { path: 'registration', component: RegistrationFormComponent},
+  { path: 'register', component: RegistrationFormComponent},
 
 ];
 

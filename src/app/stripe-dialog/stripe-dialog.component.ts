@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
 import { Payment } from './payment';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-stripe-dialog',
@@ -63,7 +65,7 @@ export class StripeDialogComponent implements OnInit {
       .confirmPayment({
         elements: this.stripePaymentElement.elements,
         confirmParams: {
-          return_url: 'https://localhost:4200/payment',
+          return_url: environment.returnUrl,
           payment_method_data: {
             billing_details: {
               name: this.paymentData.name
