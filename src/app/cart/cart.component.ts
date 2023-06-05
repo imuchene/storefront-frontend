@@ -9,6 +9,7 @@ import { Product } from '../product/product.model';
 import { AppState } from '../reducers/product.reducer';
 import { CartItem } from './cart-item.model';
 import { countAndGroupLikeItems } from '../utils/count-and-group.util';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cart',
@@ -24,7 +25,7 @@ export class CartComponent {
   totalValue: number;
   count: number;
 
-  constructor(private store: Store<AppState>, public dialog: MatDialog) { 
+  constructor(private store: Store<AppState>, public dialog: MatDialog, private snackBar: MatSnackBar) { 
     this.cart = this.store.select(state => state.products.cart);
     
     
@@ -39,6 +40,7 @@ export class CartComponent {
 
   deleteProduct(id: string){
     this.store.dispatch(deleteProductAction({ productId: id}));
+    this.snackBar.open('Product successfully removed from the cart', 'Dismiss', { duration: 3000});
   }
 
   openDialog(): void {

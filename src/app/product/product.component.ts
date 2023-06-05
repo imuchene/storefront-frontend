@@ -6,6 +6,7 @@ import { ProductState } from '../states/product.state';
 import {v4 as uuid } from 'uuid'; 
 import { addProductAction, loadProductsAction } from '../actions/product.actions';
 import { AppState } from '../reducers/product.reducer';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product',
@@ -19,7 +20,7 @@ export class ProductComponent {
   loading: Observable<boolean>;
   error: Observable<Error>;
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<AppState>, private snackBar: MatSnackBar) { 
     this.loading = this.store.select(state => state.products.loading);
 
     this.store.dispatch(loadProductsAction());
@@ -28,6 +29,7 @@ export class ProductComponent {
 
   addProduct(product: Product){
     this.store.dispatch(addProductAction({ product: product, count: 1}));
+    this.snackBar.open('Product successfully added to the cart', 'Dismiss', { duration: 3000 });
   }
 
 
