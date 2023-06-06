@@ -1,5 +1,36 @@
+<form [formGroup]="form" class="example-form">
 
-<br />
-<br />
-<br />
-<p>registration-form works!</p>
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" name="name" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" formControlName="email" name="email" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Phone Number</mat-label>
+    <input matInput placeholder="Phone Number" formControlName="phoneNumber" name="phoneNumber" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Password" formControlName="password" name="password" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Confirm Password</mat-label>
+    <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" name="confirmPassword" required />
+  </mat-form-field>
+
+  <button mat-raised-button [disabled]="!form.valid" (click)="register()" color="primary">
+    Create Account
+  </button>
+
+</form>
+
+<div class="example-form">
+  <p>Already have an account? <a mat-stroked-button color="primary" routerLink="/login">Login</a></p>
+</div>

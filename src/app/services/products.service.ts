@@ -13,6 +13,6 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getProducts(){
-    return this.http.get<Product[]>(environment.baseUrl + 'products').pipe(delay(500));
+    return this.http.get<Product[]>(environment.apiUrl + 'products').pipe(delay(500));
   }
 }

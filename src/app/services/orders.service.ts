@@ -18,6 +18,6 @@ export class OrdersService {
       withCredentials: true,
     };
     
-    return this.http.post<any>(environment.baseUrl + 'orders', order, httpOptions);
+    return this.http.post<any>(environment.apiUrl + 'orders', order, httpOptions);
   }
 }

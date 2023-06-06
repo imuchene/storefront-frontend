@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../services/auth.service';
 
 
@@ -23,7 +22,6 @@ export class LoginFormComponent {
     private router: Router,
     private snackBar: MatSnackBar, 
     public dialog: MatDialog,
-    private cookieService: CookieService
   ) {
     this.form = this.formBuilder.group({
       email: ['', Validators.required],
@@ -33,8 +31,8 @@ export class LoginFormComponent {
 
 
   login() {
-    const val = this.form.value;
-    this.authService.login(val.email, val.password)
+    const loginData = this.form.value;
+    this.authService.login(loginData.email, loginData.password)
     .subscribe({
       next: (res) => {
         this.dialog.closeAll();
@@ -52,11 +50,6 @@ export class LoginFormComponent {
       duration: 3000
     });
   }
-
-  routeToPayment(){
-    
-  }
-
 
 
 }
