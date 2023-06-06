@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:3000/',
-  returnUrl: 'https://localhost:4200/payment'
+  returnUrl: 'https://localhost:4200/payment',
+  stripePublicKey: 'pk_test_51JNFj6GIyORaO7x3u4vzlVQJh4VdrlQa45nQVdVV8GCftT6TWYyuUG8xhD72TN6zdnwTpnJq3FZwz3FN41436Wlp009CDJriWG',
+  stripeApiVersion: '2022-11-15',
 };
 
 /*

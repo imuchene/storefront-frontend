@@ -1,5 +1,5 @@
-import { CartItem } from "../cart/cart-item.model";
-import { Product } from "../product/product.model";
+import { CartItem } from "../models/cart-item.model";
+import { Product } from "../models/product.model";
 
 export function countAndGroupLikeItems(products: Product[]): CartItem[] {
   // Get a count of all the products added by the customer

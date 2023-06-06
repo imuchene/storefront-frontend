@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Product } from '../product/product.model';
+import { Product } from '../models/product.model';
 
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Product } from './product.model';
+import { Product } from '../models/product.model';
 import { ProductState } from '../states/product.state';
 import {v4 as uuid } from 'uuid'; 
 import { addProductAction, loadProductsAction } from '../actions/product.actions';

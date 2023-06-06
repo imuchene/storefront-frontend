@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { totalItemsAction } from '../actions/cart-item.actions';
 import { deleteProductAction } from '../actions/product.actions';
 import { LoginFormComponent } from '../login-form/login-form.component';
-import { Product } from '../product/product.model';
+import { Product } from '../models/product.model';
 import { AppState } from '../reducers/product.reducer';
-import { CartItem } from './cart-item.model';
+import { CartItem } from '../models/cart-item.model';
 import { countAndGroupLikeItems } from '../utils/count-and-group.util';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

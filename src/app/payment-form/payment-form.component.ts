@@ -4,11 +4,11 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../reducers/product.reducer';
 import { Observable } from 'rxjs/internal/Observable';
 import { PaymentMethod } from '../enums/payment-methods.enum';
-import { CartItem } from '../cart/cart-item.model';
-import { Product } from '../product/product.model';
+import { CartItem } from '../models/cart-item.model';
+import { Product } from '../models/product.model';
 import { countAndGroupLikeItems } from '../utils/count-and-group.util';
 import { OrdersService } from '../services/orders.service'
-import { Order } from './order.model'
+import { Order } from '../models/order.model'
 import { MatDialog } from '@angular/material/dialog';
 import { StripeDialogComponent } from '../stripe-dialog/stripe-dialog.component';
 

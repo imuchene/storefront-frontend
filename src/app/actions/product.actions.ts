@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { ProductActionTypes } from "../enums/product.enum";
-import { Product } from "../product/product.model";
+import { Product } from "../models/product.model";
 
 export const addProductAction = createAction(
   ProductActionTypes.ADD_PRODUCT,
