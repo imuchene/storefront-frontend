@@ -4,15 +4,11 @@ import { Product } from '../models/product.model';
 export function countAndGroupLikeItems(products: Product[]): CartItem[] {
   // Get a count of all the products added by the customer
   const counts: any = {};
-  products.forEach(
-    (product) => (counts[product.id] = (counts[product.id] || 0) + 1)
-  );
+  products.forEach((product) => (counts[product.id] = (counts[product.id] || 0) + 1));
 
   // Remove all duplicate products from the cart
 
-  const uniqueProducts = products.filter(
-    (item, pos, self) => self.findIndex((v) => v.id === item.id) === pos
-  );
+  const uniqueProducts = products.filter((item, pos, self) => self.findIndex((v) => v.id === item.id) === pos);
 
   // Create an array of cart items
   const newCartItems: CartItem[] = [];

@@ -1,9 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  StripeElementsOptions,
-  StripePaymentElementOptions,
-} from '@stripe/stripe-js';
+import { StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
 import { Payment } from '../models/payment.model';
 import { environment } from 'src/environments/environment';

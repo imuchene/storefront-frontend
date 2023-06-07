@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { CustomerLogin } from '../models/customer-login.model';
 
 @Component({
   selector: 'app-login-form',
@@ -28,8 +29,8 @@ export class LoginFormComponent {
   }
 
   login() {
-    const loginData = this.form.value;
-    this.authService.login(loginData.email, loginData.password).subscribe({
+    const loginData: CustomerLogin = this.form.value;
+    this.authService.login(loginData).subscribe({
       next: (res) => {
         this.dialog.closeAll();
         this.router.navigate(['payment']);

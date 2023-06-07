@@ -29,9 +29,7 @@ export const productReducer = createReducer(
     };
   }),
   on(deleteProductAction, (state, { productId }) => {
-    const remainingProducts = state.cart.filter(
-      (product) => product.id !== productId
-    );
+    const remainingProducts = state.cart.filter((product) => product.id !== productId);
     return {
       ...state,
       cart: remainingProducts,

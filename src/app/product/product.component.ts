@@ -4,10 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductState } from '../states/product.state';
 import { v4 as uuid } from 'uuid';
-import {
-  addProductAction,
-  loadProductsAction,
-} from '../actions/product.actions';
+import { addProductAction, loadProductsAction } from '../actions/product.actions';
 import { AppState } from '../reducers/product.reducer';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

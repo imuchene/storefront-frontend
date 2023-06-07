@@ -7,14 +7,9 @@ export const addProductAction = createAction(
   props<{ product: Product; count: number }>()
 );
 
-export const deleteProductAction = createAction(
-  ProductActionTypes.DELETE_PRODUCT,
-  props<{ productId: string }>()
-);
+export const deleteProductAction = createAction(ProductActionTypes.DELETE_PRODUCT, props<{ productId: string }>());
 
-export const loadProductsAction = createAction(
-  ProductActionTypes.LOAD_PRODUCTS
-);
+export const loadProductsAction = createAction(ProductActionTypes.LOAD_PRODUCTS);
 
 export const loadProductsSuccessAction = createAction(
   ProductActionTypes.LOAD_PRODUCTS_SUCCESS,

@@ -20,10 +20,7 @@ import { StripeDialogComponent } from '../stripe-dialog/stripe-dialog.component'
 export class PaymentFormComponent implements OnInit {
   form: FormGroup;
   paymentMethod: string;
-  paymentMethods: string[] = [
-    PaymentMethod.CreditOrDebitCard,
-    PaymentMethod.Mpesa,
-  ];
+  paymentMethods: string[] = [PaymentMethod.CreditOrDebitCard, PaymentMethod.Mpesa];
   totalCartValue: Observable<number>;
   totalValue: number;
   orderItems: CartItem[];
@@ -63,10 +60,7 @@ export class PaymentFormComponent implements OnInit {
     };
 
     this.ordersService.createOrder(order).subscribe((result) => {
-      if (
-        result.clientSecret &&
-        this.paymentMethod === PaymentMethod.CreditOrDebitCard
-      ) {
+      if (result.clientSecret && this.paymentMethod === PaymentMethod.CreditOrDebitCard) {
         this.openDialog({
           name: result.customerName,
           amount: this.totalValue,
