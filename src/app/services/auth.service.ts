@@ -23,4 +23,16 @@ export class AuthService {
   register(customerRegistration: CustomerRegistration): Observable<HttpResponse<any>> {
     return this.http.post<any>(environment.apiUrl + 'auth/register', customerRegistration, this.httpOptions);
   }
+
+  logout(): Observable<HttpResponse<any>> {
+    return this.http.delete<any>(environment.apiUrl + 'auth/log_out', this.httpOptions);
+  }
+
+  public get isLoggedIn(): boolean {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -10,6 +10,8 @@ import { AppState } from '../reducers/product.reducer';
 import { CartItem } from '../models/cart-item.model';
 import { countAndGroupLikeItems } from '../utils/count-and-group.util';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -24,7 +26,13 @@ export class CartComponent {
   totalValue: number;
   count: number;
 
-  constructor(private store: Store<AppState>, public dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(
+    private store: Store<AppState>,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.cart = this.store.select((state) => state.products.cart);
 
     this.cart.subscribe((res) => {
@@ -45,13 +53,11 @@ export class CartComponent {
     this.snackBar.open('Product successfully removed from the cart', 'Dismiss', { duration: 3000 });
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(LoginFormComponent, {
-      height: '400px',
-      width: '600px',
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+  checkLogin() {
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(['/payment']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }

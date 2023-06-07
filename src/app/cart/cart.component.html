@@ -11,7 +11,7 @@
       <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
     </ng-container>
     <ng-container matColumnDef="Price">
-      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <th mat-header-cell *matHeaderCellDef>Unit Price</th>
       <td mat-cell *matCellDef="let element">{{ element.unitPrice }}</td>
     </ng-container>
     <ng-container matColumnDef="Subtotal">
@@ -46,6 +46,6 @@
   <div class="example-button-row">
     <button mat-raised-button color="primary" routerLink="/">Back to Shopping</button>
     <!-- <button mat-raised-button color="warn" (click)="openDialog()" >Checkout</button> -->
-    <button mat-raised-button color="warn" routerLink="/login">Checkout</button>
+    <button mat-raised-button color="warn" (click)="checkLogin()">Checkout</button>
   </div>
 </section>

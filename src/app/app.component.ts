@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './reducers/product.reducer';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
   totalValue: Observable<number>;
   navTotalItems: number;
 
-  constructor(private router: Router, private store: Store<AppState>) {
+  constructor(private router: Router, private store: Store<AppState>, public authService: AuthService) {
     this.totalItems = this.store.select((state) => state.products.count);
     this.totalValue = this.store.select((state) => state.carts.totalValue);
 
@@ -24,5 +25,11 @@ export class AppComponent {
 
   loadCart() {
     this.router.navigateByUrl('cart');
+  }
+
+  logOut() {
+    this.authService.logout();
+    localStorage.clear();
+    this.router.navigate(['/']);
   }
 }

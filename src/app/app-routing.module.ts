@@ -5,12 +5,13 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ProductComponent } from './product/product.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: ProductComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginFormComponent },
-  { path: 'payment', component: PaymentFormComponent },
+  { path: 'payment', component: PaymentFormComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegistrationFormComponent },
 ];
 
