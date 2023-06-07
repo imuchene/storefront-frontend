@@ -8,15 +8,14 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 
 const routes: Routes = [
   { path: '', component: ProductComponent },
-  { path: 'cart', component: CartComponent},
-  { path: 'login', component: LoginFormComponent},
-  { path: 'payment', component: PaymentFormComponent},
-  { path: 'register', component: RegistrationFormComponent},
-
+  { path: 'cart', component: CartComponent },
+  { path: 'login', component: LoginFormComponent },
+  { path: 'payment', component: PaymentFormComponent },
+  { path: 'register', component: RegistrationFormComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

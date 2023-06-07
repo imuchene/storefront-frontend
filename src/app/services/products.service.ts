@@ -4,15 +4,15 @@ import { delay } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Product } from '../models/product.model';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getProducts(){
-    return this.http.get<Product[]>(environment.apiUrl + 'products').pipe(delay(500));
+  getProducts() {
+    return this.http
+      .get<Product[]>(environment.apiUrl + 'products')
+      .pipe(delay(500));
   }
 }

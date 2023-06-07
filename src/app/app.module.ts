@@ -29,7 +29,7 @@ import { StripeDialogComponent } from './stripe-dialog/stripe-dialog.component';
     PaymentFormComponent,
     LoginFormComponent,
     RegistrationFormComponent,
-    StripeDialogComponent
+    StripeDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,14 +37,19 @@ import { StripeDialogComponent } from './stripe-dialog/stripe-dialog.component';
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([ProductEffects]),
     HttpClientModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxStripeModule.forRoot(environment.stripePublicKey, { apiVersion: environment.stripeApiVersion })
+    NgxStripeModule.forRoot(environment.stripePublicKey, {
+      apiVersion: environment.stripeApiVersion,
+    }),
   ],
   providers: [CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

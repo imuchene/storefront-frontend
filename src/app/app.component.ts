@@ -7,7 +7,7 @@ import { AppState } from './reducers/product.reducer';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'storefront-frontend';
@@ -15,14 +15,14 @@ export class AppComponent {
   totalValue: Observable<number>;
   navTotalItems: number;
 
-  constructor(private router: Router, private store: Store<AppState>){
-    this.totalItems = this.store.select(state => state.products.count);
-    this.totalValue = this.store.select(state => state.carts.totalValue);
+  constructor(private router: Router, private store: Store<AppState>) {
+    this.totalItems = this.store.select((state) => state.products.count);
+    this.totalValue = this.store.select((state) => state.carts.totalValue);
 
-    this.totalItems.subscribe(res => this.navTotalItems = res);
+    this.totalItems.subscribe((res) => (this.navTotalItems = res));
   }
 
-  loadCart(){
+  loadCart() {
     this.router.navigateByUrl('cart');
   }
 }

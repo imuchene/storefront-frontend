@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,36 +10,31 @@ import { CustomerRegistration } from '../models/customer-registration.model';
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.scss']
+  styleUrls: ['./registration-form.component.scss'],
 })
-export class RegistrationFormComponent implements OnInit {
-
+export class RegistrationFormComponent {
   form: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar, 
-    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
     });
-   }
-
-  ngOnInit(): void {
   }
 
   register() {
     const customerRegistration: CustomerRegistration = this.form.value;
-    
-    this.authService.register(customerRegistration)
-    .subscribe({
+
+    this.authService.register(customerRegistration).subscribe({
       next: (res) => {
         this.dialog.closeAll();
         this.router.navigate(['payment']);
@@ -47,14 +42,13 @@ export class RegistrationFormComponent implements OnInit {
       // On login failure
       error: (error: HttpErrorResponse) => {
         this.openSnackBar(error);
-      }
+      },
     });
   }
 
   openSnackBar(error: HttpErrorResponse) {
     this.snackBar.open(error.error.message, 'Dismiss', {
-      duration: 3000
+      duration: 3000,
     });
   }
-
 }

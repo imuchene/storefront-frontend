@@ -5,34 +5,36 @@ import { Observable } from 'rxjs';
 import { CustomerRegistration } from '../models/customer-registration.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient, 
-    ) { }
-
-  login(email: string, password: string): Observable<HttpResponse<any>>{
-
+  login(email: string, password: string): Observable<HttpResponse<any>> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       withCredentials: true,
     };
-    
-    return this.http.post<any>(environment.apiUrl + 'auth/login', { email: email, password: password }, httpOptions);
 
+    return this.http.post<any>(
+      environment.apiUrl + 'auth/login',
+      { email: email, password: password },
+      httpOptions
+    );
   }
 
-  register(customerRegistration: CustomerRegistration): Observable<HttpResponse<any>>{
-
+  register(
+    customerRegistration: CustomerRegistration
+  ): Observable<HttpResponse<any>> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       withCredentials: true,
     };
-    
-    return this.http.post<any>(environment.apiUrl + 'auth/register', customerRegistration, httpOptions);
 
+    return this.http.post<any>(
+      environment.apiUrl + 'auth/register',
+      customerRegistration,
+      httpOptions
+    );
   }
-
 }

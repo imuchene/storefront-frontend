@@ -14,44 +14,65 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent {
-
   cart: Observable<Product[]>;
   dataSource: CartItem[];
-  displayedColumns: string[] = ['Name', 'Quantity', 'Price', 'Subtotal', 'Action'];
+  displayedColumns: string[] = [
+    'Name',
+    'Quantity',
+    'Price',
+    'Subtotal',
+    'Action',
+  ];
   totalItems: number;
   totalValue: number;
   count: number;
 
-  constructor(private store: Store<AppState>, public dialog: MatDialog, private snackBar: MatSnackBar) { 
-    this.cart = this.store.select(state => state.products.cart);
-    
-    
-    this.cart.subscribe(res => {
+  constructor(
+    private store: Store<AppState>,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {
+    this.cart = this.store.select((state) => state.products.cart);
+
+    this.cart.subscribe((res) => {
       this.dataSource = countAndGroupLikeItems(res);
-      this.totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
-      this.totalValue = Number(this.dataSource.reduce((total, item) => item.subTotal + total, 0).toFixed(2));
-      this.store.dispatch(totalItemsAction({ totalItems: this.totalItems, totalValue: this.totalValue}));
+      this.totalItems = this.dataSource.reduce(
+        (total, item) => item.quantity + total,
+        0
+      );
+      this.totalValue = Number(
+        this.dataSource
+          .reduce((total, item) => item.subTotal + total, 0)
+          .toFixed(2)
+      );
+      this.store.dispatch(
+        totalItemsAction({
+          totalItems: this.totalItems,
+          totalValue: this.totalValue,
+        })
+      );
     });
   }
 
-
-  deleteProduct(id: string){
-    this.store.dispatch(deleteProductAction({ productId: id}));
-    this.snackBar.open('Product successfully removed from the cart', 'Dismiss', { duration: 3000});
+  deleteProduct(id: string) {
+    this.store.dispatch(deleteProductAction({ productId: id }));
+    this.snackBar.open(
+      'Product successfully removed from the cart',
+      'Dismiss',
+      { duration: 3000 }
+    );
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginFormComponent, {
       height: '400px',
-      width: '600px'
+      width: '600px',
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-    })
+    });
   }
-
-
 }

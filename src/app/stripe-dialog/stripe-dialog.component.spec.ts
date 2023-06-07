@@ -8,9 +8,8 @@ describe('StripeDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StripeDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [StripeDialogComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StripeDialogComponent);
     component = fixture.componentInstance;

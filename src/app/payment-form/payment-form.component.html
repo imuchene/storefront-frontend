@@ -3,16 +3,20 @@
   <mat-card-content>
     <form [formGroup]="form" id="payment-form">
       <mat-radio-group
-      aria-labelledby="example-radio-group-label"
-      class="example-radio-group"
-      formControlName="paymentRadio"
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        formControlName="paymentRadio"
       >
-      <mat-radio-button class="example-radio-button" *ngFor="let method of paymentMethods" [value]="method">
-        {{method}}
-      </mat-radio-button>
-    </mat-radio-group>
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let method of paymentMethods"
+          [value]="method"
+        >
+          {{ method }}
+        </mat-radio-button>
+      </mat-radio-group>
     </form>
-    <div>Your payment method is: {{paymentMethod}}</div>
+    <div>Your payment method is: {{ paymentMethod }}</div>
   </mat-card-content>
   <mat-card-actions>
     <button
