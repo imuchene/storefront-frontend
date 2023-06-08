@@ -5,6 +5,7 @@ import {
   loadProductsAction,
   loadProductsFailureAction,
   loadProductsSuccessAction,
+  resetCartAction,
 } from '../actions/product.actions';
 import { CartState } from '../states/cart.state';
 import { ProductState } from '../states/product.state';
@@ -56,6 +57,9 @@ export const productReducer = createReducer(
       error: error,
       loading: false,
     };
+  }),
+  on(resetCartAction, () => {
+    return { ...initialState, loading: false }
   })
 );
 

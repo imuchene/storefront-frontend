@@ -1,9 +1,12 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
 import { Payment } from '../models/payment.model';
 import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
+import { AppState } from '../reducers/product.reducer';
+import { resetCartAction } from '../actions/product.actions';
 
 @Component({
   selector: 'app-stripe-dialog',
@@ -41,7 +44,9 @@ export class StripeDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     data: any,
-    private stripeService: StripeService
+    private stripeService: StripeService,
+    private store: Store<AppState>,
+    private dialog: MatDialog,
   ) {
     this.paymentData = data.data;
 
@@ -82,6 +87,9 @@ export class StripeDialogComponent implements OnInit {
             if (result.paymentIntent?.status === 'succeeded') {
               // Show a success message to your customer
               alert('Payment was successful');
+              this.store.dispatch(resetCartAction());
+              this.dialog.closeAll();
+
             }
           }
         },

@@ -20,3 +20,7 @@ export const loadProductsFailureAction = createAction(
   ProductActionTypes.LOAD_PRODUCTS_FAILURE,
   props<{ error: Error }>()
 );
+
+export const resetCartAction = createAction(
+  ProductActionTypes.RESET_CART
+);
