@@ -15,8 +15,6 @@
     <div>Your payment method is: {{ paymentMethod }}</div>
   </mat-card-content>
   <mat-card-actions>
-    <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary" (click)="checkOut()">
-      Checkout
-    </button>
+    <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary" (click)="pay()">Pay</button>
   </mat-card-actions>
 </mat-card>

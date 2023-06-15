@@ -9,6 +9,7 @@ import { CustomerLogin } from '../models/customer-login.model';
 import { AppState } from '../reducers/product.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-form',
@@ -25,12 +26,11 @@ export class LoginFormComponent {
     private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog,
     private store: Store<AppState>
   ) {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', { validators: [Validators.required, Validators.email] }],
+      password: ['', { validators: [Validators.required, Validators.minLength(8)] }],
     });
 
     this.totalItemsInCart = this.store.select((state) => state.products.count);
@@ -42,8 +42,7 @@ export class LoginFormComponent {
     const loginData: CustomerLogin = this.form.value;
     this.authService.login(loginData).subscribe({
       next: (res) => {
-        this.dialog.closeAll();
-        localStorage.setItem('isLoggedIn', 'true');
+        this.authService.setLoggedInCookie();
         this.openSnackBar('Logged in successfully');
 
         if (this.totalItems > 0) {
@@ -59,8 +58,9 @@ export class LoginFormComponent {
     });
   }
 
-  openSnackBar(message: any) {
-    this.snackBar.open(message, 'Dismiss', {
+  openSnackBar(message: HttpErrorResponse | string) {
+    const messageToDisplay = typeof message === 'string' ? message : message.error.message;
+    this.snackBar.open(messageToDisplay, 'Dismiss', {
       duration: 3000,
     });
   }

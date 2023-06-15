@@ -59,7 +59,7 @@ export const productReducer = createReducer(
     };
   }),
   on(resetCartAction, () => {
-    return { ...initialState, loading: false }
+    return { ...initialState, loading: false };
   })
 );
 

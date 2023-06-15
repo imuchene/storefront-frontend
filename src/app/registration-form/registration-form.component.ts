@@ -36,8 +36,8 @@ export class RegistrationFormComponent {
 
     this.authService.register(customerRegistration).subscribe({
       next: (res) => {
-        this.dialog.closeAll();
-        this.router.navigate(['payment']);
+        this.openSnackBar('Successfully registered');
+        this.router.navigate(['login']);
       },
       // On login failure
       error: (error: HttpErrorResponse) => {
@@ -46,8 +46,9 @@ export class RegistrationFormComponent {
     });
   }
 
-  openSnackBar(error: HttpErrorResponse) {
-    this.snackBar.open(error.error.message, 'Dismiss', {
+  openSnackBar(message: HttpErrorResponse | string) {
+    const messageToDisplay = typeof message === 'string' ? message : message.error.message;
+    this.snackBar.open(messageToDisplay, 'Dismiss', {
       duration: 3000,
     });
   }

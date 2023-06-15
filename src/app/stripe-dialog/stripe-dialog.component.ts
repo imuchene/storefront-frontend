@@ -46,7 +46,7 @@ export class StripeDialogComponent implements OnInit {
     data: any,
     private stripeService: StripeService,
     private store: Store<AppState>,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {
     this.paymentData = data.data;
 
@@ -78,7 +78,6 @@ export class StripeDialogComponent implements OnInit {
       .subscribe({
         next: (result) => {
           this.paying = false;
-          console.log('payment result', result);
 
           if (result.error) {
             // Show the error to the customer e.g. insufficient funds
@@ -89,11 +88,11 @@ export class StripeDialogComponent implements OnInit {
               alert('Payment was successful');
               this.store.dispatch(resetCartAction());
               this.dialog.closeAll();
-
             }
           }
         },
         error: (error) => {
+          // In a production application, these errors should be logged in an error logging service
           console.error('An error occurred when completing the payment', error);
         },
       });

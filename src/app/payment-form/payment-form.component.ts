@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../reducers/product.reducer';
 import { Observable } from 'rxjs/internal/Observable';
@@ -34,17 +34,17 @@ export class PaymentFormComponent implements OnInit {
   ) {
     this.totalCartValue = this.store.select((state) => state.carts.totalValue);
     this.cart = this.store.select((state) => state.products.cart);
+    this.totalCartValue.subscribe((res) => (this.totalValue = res));
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      paymentRadio: ['', [Validators.required]],
+      paymentRadio: ['', [Validators.required, this.checkTotalCartValue()]],
     });
   }
 
-  checkOut() {
+  pay() {
     this.paymentMethod = this.form.get('paymentRadio')?.value;
-    this.totalCartValue.subscribe((res) => (this.totalValue = res));
     this.cart.subscribe((result) => {
       this.orderItems = countAndGroupLikeItems(result);
     });
@@ -61,7 +61,7 @@ export class PaymentFormComponent implements OnInit {
 
     this.ordersService.createOrder(order).subscribe((result) => {
       if (result.clientSecret && this.paymentMethod === PaymentMethod.CreditOrDebitCard) {
-        this.openDialog({
+        this.openStripeDialog({
           name: result.customerName,
           amount: this.totalValue,
           clientSecret: result.clientSecret,
@@ -70,11 +70,21 @@ export class PaymentFormComponent implements OnInit {
     });
   }
 
-  openDialog(data: any) {
-    this.dialog.open(StripeDialogComponent, {
+  openStripeDialog(data: any) {
+    const dialogRef = this.dialog.open(StripeDialogComponent, {
       width: '70%',
       height: '60%',
       data: { data },
     });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.form.disable({ onlySelf: true });
+    });
+  }
+
+  checkTotalCartValue(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return this.totalValue < 1 ? { valid: true } : null;
+    };
   }
 }

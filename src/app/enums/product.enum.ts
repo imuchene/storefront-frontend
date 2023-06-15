@@ -4,5 +4,5 @@ export enum ProductActionTypes {
   LOAD_PRODUCTS = '[Products] LOAD PRODUCTS',
   LOAD_PRODUCTS_SUCCESS = '[Products] LOAD PRODUCTS SUCCESS',
   LOAD_PRODUCTS_FAILURE = '[Products] LOAD PRODUCTS FAILURE',
-  RESET_CART = '[Products] RESET CART'
+  RESET_CART = '[Products] RESET CART',
 }
