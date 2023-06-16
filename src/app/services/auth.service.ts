@@ -6,6 +6,7 @@ import { CustomerRegistration } from '../models/customer-registration.model';
 import { CustomerLogin } from '../models/customer-login.model';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { CookieNameEnum } from '../enums/cookie-name.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -41,11 +42,11 @@ export class AuthService {
   setLoggedInCookie() {
     const cookieExpiry: Date = new Date();
     cookieExpiry.setMinutes(cookieExpiry.getMinutes() + 10);
-    this.cookieService.set('is-logged-in', 'true', cookieExpiry);
+    this.cookieService.set(CookieNameEnum.IsLoggedIn, 'true', cookieExpiry);
   }
 
   checkLoggedIn(): boolean {
-    if (this.cookieService.get('is-logged-in') === 'true') {
+    if (this.cookieService.get(CookieNameEnum.IsLoggedIn) === 'true') {
       return true;
     } else {
       return false;
@@ -53,7 +54,7 @@ export class AuthService {
   }
 
   deleteLoggedInCookie() {
-    this.cookieService.delete('is-logged-in');
+    this.cookieService.delete(CookieNameEnum.IsLoggedIn);
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -62,6 +63,7 @@ export class AuthService {
       return true;
     }
 
+    //todo add a toast informing the user that the session has timed out
     this.router.navigate(['/']);
     return false;
   }
