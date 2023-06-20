@@ -3,9 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CustomerRegistration } from '../models/customer-registration.model';
+import { CustomerRegistration } from '../../models/customer-registration.model';
+import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
   selector: 'app-registration-form',
@@ -19,7 +20,7 @@ export class RegistrationFormComponent {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private snackBarUtil: SnackBarUtil,
     public dialog: MatDialog
   ) {
     this.form = this.formBuilder.group({
@@ -36,20 +37,13 @@ export class RegistrationFormComponent {
 
     this.authService.register(customerRegistration).subscribe({
       next: (res) => {
-        this.openSnackBar('Successfully registered');
+        this.snackBarUtil.openSnackBar('Successfully registered');
         this.router.navigate(['login']);
       },
       // On login failure
       error: (error: HttpErrorResponse) => {
-        this.openSnackBar(error);
+        this.snackBarUtil.openSnackBar(error);
       },
-    });
-  }
-
-  openSnackBar(message: HttpErrorResponse | string) {
-    const messageToDisplay = typeof message === 'string' ? message : message.error.message;
-    this.snackBar.open(messageToDisplay, 'Dismiss', {
-      duration: 3000,
     });
   }
 }

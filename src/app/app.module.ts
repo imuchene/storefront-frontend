@@ -4,22 +4,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from './components/product/product.component';
 import { reducers } from './reducers/product.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './effects/product.effects';
-import { CartComponent } from './cart/cart.component';
-import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { CartComponent } from './components/cart/cart.component';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { MaterialModule } from './material.module';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxStripeModule } from 'ngx-stripe';
-import { StripeDialogComponent } from './stripe-dialog/stripe-dialog.component';
+import { StripeDialogComponent } from './components/stripe-dialog/stripe-dialog.component';
 
 @NgModule({
   declarations: [

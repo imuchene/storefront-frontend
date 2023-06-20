@@ -2,11 +2,14 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
-import { Payment } from '../models/payment.model';
+import { Payment } from '../../models/payment.model';
 import { environment } from 'src/environments/environment';
 import { Store } from '@ngrx/store';
-import { AppState } from '../reducers/product.reducer';
-import { resetCartAction } from '../actions/product.actions';
+import { AppState } from '../../reducers/product.reducer';
+import { resetCartAction } from '../../actions/product.actions';
+import { PaymentStatus } from '../../enums/payment-status.enum';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
   selector: 'app-stripe-dialog',
@@ -46,7 +49,8 @@ export class StripeDialogComponent implements OnInit {
     data: any,
     private stripeService: StripeService,
     private store: Store<AppState>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBarUtil: SnackBarUtil
   ) {
     this.paymentData = data.data;
 
@@ -61,6 +65,9 @@ export class StripeDialogComponent implements OnInit {
   }
 
   pay() {
+    if (this.paying) {
+      return;
+    }
     this.paying = true;
     this.stripeService
       .confirmPayment({
@@ -83,17 +90,16 @@ export class StripeDialogComponent implements OnInit {
             // Show the error to the customer e.g. insufficient funds
             alert(result.error.message);
           } else {
-            if (result.paymentIntent?.status === 'succeeded') {
+            if (result.paymentIntent?.status === PaymentStatus.Succeeded) {
               // Show a success message to your customer
-              alert('Payment was successful');
               this.store.dispatch(resetCartAction());
+              this.snackBarUtil.openSnackBar('Payment Succeeded');
               this.dialog.closeAll();
             }
           }
         },
-        error: (error) => {
-          // In a production application, these errors should be logged in an error logging service
-          console.error('An error occurred when completing the payment', error);
+        error: (error: HttpErrorResponse) => {
+          this.snackBarUtil.openSnackBar(error);
         },
       });
   }

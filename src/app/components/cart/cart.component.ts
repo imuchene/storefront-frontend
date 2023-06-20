@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { totalItemsAction } from '../actions/cart-item.actions';
-import { deleteProductAction } from '../actions/product.actions';
-import { Product } from '../models/product.model';
-import { AppState } from '../reducers/product.reducer';
-import { CartItem } from '../models/cart-item.model';
-import { countAndGroupLikeItems } from '../utils/count-and-group.util';
+import { totalItemsAction } from '../../actions/cart-item.actions';
+import { deleteProductAction } from '../../actions/product.actions';
+import { Product } from '../../models/product.model';
+import { AppState } from '../../reducers/product.reducer';
+import { CartItem } from '../../models/cart-item.model';
+import { countAndGroupLikeItems } from '../../utils/count-and-group.util';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({

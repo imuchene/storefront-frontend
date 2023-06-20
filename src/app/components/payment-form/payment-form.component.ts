@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from '../reducers/product.reducer';
+import { AppState } from '../../reducers/product.reducer';
 import { Observable } from 'rxjs/internal/Observable';
-import { PaymentMethod } from '../enums/payment-methods.enum';
-import { CartItem } from '../models/cart-item.model';
-import { Product } from '../models/product.model';
-import { countAndGroupLikeItems } from '../utils/count-and-group.util';
-import { OrdersService } from '../services/orders.service';
-import { Order } from '../models/order.model';
+import { PaymentMethod } from '../../enums/payment-methods.enum';
+import { CartItem } from '../../models/cart-item.model';
+import { Product } from '../../models/product.model';
+import { countAndGroupLikeItems } from '../../utils/count-and-group.util';
+import { OrdersService } from '../../services/orders.service';
+import { Order } from '../../models/order.model';
 import { MatDialog } from '@angular/material/dialog';
 import { StripeDialogComponent } from '../stripe-dialog/stripe-dialog.component';
 
@@ -83,7 +83,7 @@ export class PaymentFormComponent implements OnInit {
   }
 
   checkTotalCartValue(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
+    return (): ValidationErrors | null => {
       return this.totalValue < 1 ? { valid: true } : null;
     };
   }

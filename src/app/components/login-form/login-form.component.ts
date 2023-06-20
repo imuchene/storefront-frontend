@@ -1,15 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { CustomerLogin } from '../models/customer-login.model';
-import { AppState } from '../reducers/product.reducer';
+import { AuthService } from '../../services/auth.service';
+import { CustomerLogin } from '../../models/customer-login.model';
+import { AppState } from '../../reducers/product.reducer';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import { Observable, catchError } from 'rxjs';
+import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
   selector: 'app-login-form',
@@ -25,8 +23,8 @@ export class LoginFormComponent {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private snackBarUtil: SnackBarUtil
   ) {
     this.form = this.formBuilder.group({
       email: ['', { validators: [Validators.required, Validators.email] }],
@@ -43,7 +41,7 @@ export class LoginFormComponent {
     this.authService.login(loginData).subscribe({
       next: (res) => {
         this.authService.setLoggedInCookie();
-        this.openSnackBar('Logged in successfully');
+        this.snackBarUtil.openSnackBar('Logged in successfully');
 
         if (this.totalItems > 0) {
           this.router.navigate(['/payment']);
@@ -53,15 +51,8 @@ export class LoginFormComponent {
       },
       // On login failure
       error: (error: HttpErrorResponse) => {
-        this.openSnackBar(error);
+        this.snackBarUtil.openSnackBar(error);
       },
-    });
-  }
-
-  openSnackBar(message: HttpErrorResponse | string) {
-    const messageToDisplay = typeof message === 'string' ? message : message.error.message;
-    this.snackBar.open(messageToDisplay, 'Dismiss', {
-      duration: 3000,
     });
   }
 }
