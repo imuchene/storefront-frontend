@@ -11,6 +11,8 @@ import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../models/order.model';
 import { MatDialog } from '@angular/material/dialog';
 import { StripeDialogComponent } from '../stripe-dialog/stripe-dialog.component';
+import { Router } from '@angular/router';
+import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
   selector: 'app-payment-form',
@@ -30,7 +32,8 @@ export class PaymentFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private store: Store<AppState>,
     private ordersService: OrdersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.totalCartValue = this.store.select((state) => state.carts.totalValue);
     this.cart = this.store.select((state) => state.products.cart);
@@ -79,6 +82,7 @@ export class PaymentFormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       this.form.disable({ onlySelf: true });
+      this.router.navigate(['/']);
     });
   }
 

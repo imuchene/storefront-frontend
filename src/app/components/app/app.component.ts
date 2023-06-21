@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from './reducers/product.reducer';
-import { AuthService } from './services/auth.service';
+import { AppState } from '../../reducers/product.reducer';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-root',

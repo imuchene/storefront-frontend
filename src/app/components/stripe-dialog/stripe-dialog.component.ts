@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
+import { PaymentIntentResult, StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
 import { Payment } from '../../models/payment.model';
 import { environment } from 'src/environments/environment';
@@ -83,12 +83,12 @@ export class StripeDialogComponent implements OnInit {
         redirect: 'if_required',
       })
       .subscribe({
-        next: (result) => {
+        next: (result: PaymentIntentResult) => {
           this.paying = false;
 
           if (result.error) {
             // Show the error to the customer e.g. insufficient funds
-            alert(result.error.message);
+            this.snackBarUtil.openSnackBar(String(result.error.message));
           } else {
             if (result.paymentIntent?.status === PaymentStatus.Succeeded) {
               // Show a success message to your customer

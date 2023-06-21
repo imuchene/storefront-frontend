@@ -11,5 +11,10 @@
   </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
-  <button type="submit" mat-raised-button color="primary" (click)="pay()">Pay ${{ totalAmount }}</button>
+  <button mat-raised-button color="primary" [disabled]="paying" (click)="pay()">
+    <span *ngIf="!paying">
+      PAY <span *ngIf="totalAmount">${{ totalAmount }}</span>
+    </span>
+    <span *ngIf="paying">PROCESSING...</span>
+  </button>
 </mat-dialog-actions>
