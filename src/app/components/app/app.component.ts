@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../../reducers/product.reducer';
 import { AuthService } from '../../services/auth.service';
+import { AutoLogoffService } from 'src/app/services/auto-logoff.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,12 @@ export class AppComponent {
   totalValue: Observable<number>;
   navTotalItems: number;
 
-  constructor(private router: Router, private store: Store<AppState>, public authService: AuthService) {
+  constructor(
+    private router: Router,
+    private store: Store<AppState>,
+    public authService: AuthService,
+    private autoLogoff: AutoLogoffService
+  ) {
     this.totalItems = this.store.select((state) => state.products.count);
     this.totalValue = this.store.select((state) => state.carts.totalValue);
 

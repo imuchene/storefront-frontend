@@ -9,6 +9,10 @@ import { AuthService } from './auth.service';
 export class AutoLogoffService {
   isLoggedIn = false;
 
+  MINUTES_UNTIL_AUTO_LOGOUT = 5;
+  CHECK_INTERVAL = 1000;
+  STORE_KEY = 'lastAction';
+
   constructor(
     private router: Router,
     private snackBarUtil: SnackBarUtil,
@@ -18,14 +22,17 @@ export class AutoLogoffService {
     if (this.authService.checkLoggedIn()) {
       this.isLoggedIn = true;
     }
+    this.check();
+    this.initListener();
+    this.initInterval();
   }
 
-  getLastAction(): string {
-    return String(localStorage.getItem('lastAction'));
+  get lastAction(): number {
+    return parseInt(String(localStorage.getItem(this.STORE_KEY)));
   }
 
-  lastAction(value: any) {
-    localStorage.setItem('lastAction', JSON.stringify(value));
+  set lastAction(value: number) {
+    localStorage.setItem(this.STORE_KEY, String(value));
   }
 
   initListener() {
@@ -38,26 +45,24 @@ export class AutoLogoffService {
     this.ngZone.runOutsideAngular(() => {
       setInterval(() => {
         this.check();
-      }, 1000);
+      }, this.CHECK_INTERVAL);
     });
   }
 
   reset() {
-    this.lastAction(Date.now());
+    this.lastAction = Date.now();
   }
 
   check() {
     const now = Date.now();
-    const timeLeft = parseInt(this.getLastAction()) + 5 * 60 * 1000;
+    const timeLeft = this.lastAction + this.MINUTES_UNTIL_AUTO_LOGOUT * 60 * 1000;
     const diff = timeLeft - now;
     const isTimeout = diff < 0;
 
     this.ngZone.run(() => {
       if (isTimeout && this.isLoggedIn) {
+        this.snackBarUtil.openSnackBar('Your session expired due to inactivity. Kindly login again to continue');
         this.authService.logout();
-        setTimeout(() => {
-          console.log('Your session expired due to inactivity. Kindly login again to continue');
-        });
         this.router.navigate(['/']);
       }
     });
