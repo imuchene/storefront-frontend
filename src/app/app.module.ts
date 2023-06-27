@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components/app/app.component';
+import { AppComponent } from './components/main/app.component';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
