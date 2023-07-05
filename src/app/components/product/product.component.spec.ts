@@ -1,14 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductComponent } from './product.component';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/reducers/product.reducer';
+import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
   let fixture: ComponentFixture<ProductComponent>;
 
   beforeEach(async () => {
+    const spyStore = jasmine.createSpyObj('Store<AppState>', ['select', 'dispatch']);
+    const spySnackBar = jasmine.createSpyObj('SnackBarUtil', ['openSnackBar']);
+
     await TestBed.configureTestingModule({
       declarations: [ProductComponent],
+      providers: [
+        { provide: Store<AppState>, useValue: spyStore },
+        { provide: SnackBarUtil, useValue: spySnackBar },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductComponent);

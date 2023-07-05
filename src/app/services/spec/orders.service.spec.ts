@@ -3,11 +3,16 @@ import { TestBed } from '@angular/core/testing';
 import { OrdersService } from '../orders.service';
 
 describe('OrdersService', () => {
-  let service: OrdersService;
+  let service: jasmine.SpyObj<OrdersService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(OrdersService);
+    const spy = jasmine.createSpyObj('OrdersService', ['createOrder']);
+
+    TestBed.configureTestingModule({
+      providers: [{ provide: OrdersService, useValue: spy }],
+    });
+
+    service = TestBed.inject(OrdersService) as jasmine.SpyObj<OrdersService>;
   });
 
   it('should be created', () => {
