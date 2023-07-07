@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { AutoLogoffService } from 'src/app/services/auto-logoff.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'storefront-frontend';
   totalItems: Observable<number>;
   totalValue: Observable<number>;
@@ -25,8 +25,12 @@ export class AppComponent {
   ) {
     this.totalItems = this.store.select((state) => state.products.count);
     this.totalValue = this.store.select((state) => state.carts.totalValue);
+  }
 
-    this.totalItems.subscribe((res) => (this.navTotalItems = res));
+  ngOnInit() {
+    if (this.totalItems) {
+      this.totalItems.subscribe((res) => (this.navTotalItems = res));
+    }
   }
 
   loadCart() {

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProductComponent } from './product.component';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers/product.reducer';
