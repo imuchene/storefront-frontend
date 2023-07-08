@@ -32,6 +32,9 @@
     "uuid": "^9.0.0",
     "zone.js": "~0.11.4"
   },
+  "overrides": {
+    "word-wrap" : "npm:@aashutoshrathi/word-wrap@1.2.5"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.0",
     "@angular-eslint/builder": "14.1.2",
