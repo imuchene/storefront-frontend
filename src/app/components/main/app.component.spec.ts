@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { Router } from '@angular/router';
 import { AppState } from 'src/app/reducers/product.reducer';
 import { AuthService } from 'src/app/services/auth.service';
 import { AutoLogoffService } from 'src/app/services/auto-logoff.service';
@@ -23,7 +22,8 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       providers: [
         // When you import RouterTestingModule, you should remove all router
-        // mocked providers, save for ActiveRoute, etc: https://stackoverflow.com/questions/47140560/angular-unit-testing-typeerror-cannot-read-property-root-of-undefined
+        // mocked providers, save for ActiveRoute,
+        // etc: https://stackoverflow.com/questions/47140560/angular-unit-testing-typeerror-cannot-read-property-root-of-undefined
         { provide: Store<AppState>, useValue: spyStore },
         { provide: AuthService, useValue: authService },
         { provide: AutoLogoffService, useValue: autoLogoff },
