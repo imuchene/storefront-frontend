@@ -12,7 +12,6 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
-    const router = jasmine.createSpyObj('Router', ['navigate', 'navigateByUrl']);
     const spyStore = jasmine.createSpyObj('Store<AppState>', ['select']);
     const authService = jasmine.createSpyObj('AuthService', ['logout']);
     const autoLogoff = jasmine.createSpyObj('AutoLogoffService', ['test']);
@@ -45,6 +44,6 @@ describe('AppComponent', () => {
 
   it('should render title', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('storefront-frontend app is running!');
+    expect(compiled.querySelector('.example-toolbar')?.textContent).toContain('Storefront Frontend');
   });
 });
