@@ -12,7 +12,6 @@ import { Order } from '../../models/order.model';
 import { MatDialog } from '@angular/material/dialog';
 import { StripeDialogComponent } from '../stripe-dialog/stripe-dialog.component';
 import { Router } from '@angular/router';
-import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
   selector: 'app-payment-form',
@@ -37,7 +36,10 @@ export class PaymentFormComponent implements OnInit {
   ) {
     this.totalCartValue = this.store.select((state) => state.carts.totalValue);
     this.cart = this.store.select((state) => state.products.cart);
-    this.totalCartValue.subscribe((res) => (this.totalValue = res));
+
+    if (this.totalCartValue) {
+      this.totalCartValue.subscribe((res) => (this.totalValue = res));
+    }
   }
 
   ngOnInit(): void {

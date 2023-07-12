@@ -34,17 +34,19 @@ export class CartComponent {
   ) {
     this.cart = this.store.select((state) => state.products.cart);
 
-    this.cart.subscribe((res) => {
-      this.dataSource = countAndGroupLikeItems(res);
-      this.totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
-      this.totalValue = Number(this.dataSource.reduce((total, item) => item.subTotal + total, 0).toFixed(2));
-      this.store.dispatch(
-        totalItemsAction({
-          totalItems: this.totalItems,
-          totalValue: this.totalValue,
-        })
-      );
-    });
+    if (this.cart) {
+      this.cart.subscribe((res) => {
+        this.dataSource = countAndGroupLikeItems(res);
+        this.totalItems = this.dataSource.reduce((total, item) => item.quantity + total, 0);
+        this.totalValue = Number(this.dataSource.reduce((total, item) => item.subTotal + total, 0).toFixed(2));
+        this.store.dispatch(
+          totalItemsAction({
+            totalItems: this.totalItems,
+            totalValue: this.totalValue,
+          })
+        );
+      });
+    }
   }
 
   deleteProduct(id: string) {

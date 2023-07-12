@@ -45,6 +45,7 @@ export class StripeDialogComponent implements OnInit {
   };
 
   constructor(
+    // todo: get the correct type for the data property below
     @Inject(MAT_DIALOG_DATA)
     data: any,
     private stripeService: StripeService,

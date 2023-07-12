@@ -33,7 +33,9 @@ export class LoginFormComponent {
 
     this.totalItemsInCart = this.store.select((state) => state.products.count);
 
-    this.totalItemsInCart.subscribe((res) => (this.totalItems = res));
+    if (this.totalItemsInCart) {
+      this.totalItemsInCart.subscribe((res) => (this.totalItems = res));
+    }
   }
 
   login() {
