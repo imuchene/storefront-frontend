@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 import { MaterialModule } from 'src/app/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('RegistrationFormComponent', () => {
   let component: RegistrationFormComponent;
@@ -14,7 +15,7 @@ describe('RegistrationFormComponent', () => {
     const spyAuthService = jasmine.createSpyObj('AuthService', ['register']);
 
     await TestBed.configureTestingModule({
-      imports: [MaterialModule, BrowserAnimationsModule],
+      imports: [MaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
       declarations: [RegistrationFormComponent],
       providers: [
         { provide: SnackBarUtil, useValue: spySnackBar },

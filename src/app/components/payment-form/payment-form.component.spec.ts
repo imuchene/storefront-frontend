@@ -4,6 +4,7 @@ import { OrdersService } from 'src/app/services/orders.service';
 import { AppState } from 'src/app/reducers/product.reducer';
 import { Store } from '@ngrx/store';
 import { MaterialModule } from 'src/app/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('PaymentFormComponent', () => {
   let component: PaymentFormComponent;
@@ -14,7 +15,7 @@ describe('PaymentFormComponent', () => {
     const spyStore = jasmine.createSpyObj('Store<AppState>', ['select']);
 
     await TestBed.configureTestingModule({
-      imports: [MaterialModule],
+      imports: [MaterialModule, ReactiveFormsModule],
       declarations: [PaymentFormComponent],
       providers: [
         { provide: OrdersService, useValue: spyOrdersService },

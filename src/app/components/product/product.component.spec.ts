@@ -3,6 +3,7 @@ import { ProductComponent } from './product.component';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers/product.reducer';
 import { SnackBarUtil } from 'src/app/utils/snackbar.util';
+import { MaterialModule } from 'src/app/material.module';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
@@ -13,6 +14,7 @@ describe('ProductComponent', () => {
     const spySnackBar = jasmine.createSpyObj('SnackBarUtil', ['openSnackBar']);
 
     await TestBed.configureTestingModule({
+      imports: [MaterialModule],
       declarations: [ProductComponent],
       providers: [
         { provide: Store<AppState>, useValue: spyStore },

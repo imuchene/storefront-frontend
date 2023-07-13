@@ -4,6 +4,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers/product.reducer';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -15,6 +18,7 @@ describe('LoginFormComponent', () => {
     const spyStore = jasmine.createSpyObj('Store<AppState>', ['select']);
 
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
       declarations: [LoginFormComponent],
       providers: [
         { provide: SnackBarUtil, useValue: spySnackBar },
