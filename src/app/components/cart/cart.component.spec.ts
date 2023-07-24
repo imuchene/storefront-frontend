@@ -21,7 +21,7 @@ describe('CartComponent', () => {
       providers: [
         { provide: AuthService, useValue: spyAuthService },
         { provide: SnackBarUtil, useValue: spySnackBar },
-        { provide: Store<AppState>, useValue: spyStore }
+        { provide: Store<AppState>, useValue: spyStore },
       ],
       declarations: [CartComponent],
     }).compileComponents();

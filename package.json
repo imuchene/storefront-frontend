@@ -25,6 +25,7 @@
     "@ngrx/store": "^15.4.0",
     "@ngrx/store-devtools": "^15.4.0",
     "@stripe/stripe-js": "^1.53.0",
+    "luxon": "^3.3.0",
     "ngx-cookie-service": "^15.0.0",
     "ngx-stripe": "^15.6.0",
     "rxjs": "^7.5.0",
@@ -33,7 +34,7 @@
     "zone.js": "~0.11.4"
   },
   "overrides": {
-    "word-wrap" : "npm:@aashutoshrathi/word-wrap@1.2.5"
+    "word-wrap": "npm:@aashutoshrathi/word-wrap@1.2.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.0",
