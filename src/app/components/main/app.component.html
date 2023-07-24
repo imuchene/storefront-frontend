@@ -30,7 +30,7 @@
       aria-label="Example icon-button with heart icon"
       (click)="loadCart()"
     >
-      <mat-icon matBadge="{{ navTotalItems }}" matBadgeColor="warn">shopping_cart</mat-icon>
+      <mat-icon aria-hidden="false" matBadge="{{ navTotalItems }}" matBadgeColor="warn">shopping_cart</mat-icon>
       Cart
     </button>
   </mat-toolbar>
