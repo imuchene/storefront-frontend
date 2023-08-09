@@ -20,7 +20,7 @@ export class RegistrationFormComponent {
     private authService: AuthService,
     private router: Router,
     private snackBarUtil: SnackBarUtil,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],

@@ -13,5 +13,5 @@ export const cartReducer = createReducer(
     ...state,
     totalItems: totalItems,
     totalValue: totalValue,
-  }))
+  })),
 );

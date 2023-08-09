@@ -30,7 +30,7 @@ export class CartComponent {
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.cart = this.store.select((state) => state.products.cart);
 
@@ -43,7 +43,7 @@ export class CartComponent {
           totalItemsAction({
             totalItems: this.totalItems,
             totalValue: this.totalValue,
-          })
+          }),
         );
       });
     }

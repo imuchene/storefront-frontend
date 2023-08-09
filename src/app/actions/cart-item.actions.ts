@@ -3,5 +3,5 @@ import { CartActionTypes } from '../enums/cart-item.enum';
 
 export const totalItemsAction = createAction(
   CartActionTypes.TOTAL_ITEMS,
-  props<{ totalItems: number; totalValue: number }>()
+  props<{ totalItems: number; totalValue: number }>(),
 );

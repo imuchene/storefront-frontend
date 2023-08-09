@@ -24,7 +24,7 @@ export class LoginFormComponent {
     private authService: AuthService,
     private router: Router,
     private store: Store<AppState>,
-    private snackBarUtil: SnackBarUtil
+    private snackBarUtil: SnackBarUtil,
   ) {
     this.form = this.formBuilder.group({
       email: ['', { validators: [Validators.required, Validators.email] }],

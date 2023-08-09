@@ -32,7 +32,7 @@ export class PaymentFormComponent implements OnInit {
     private store: Store<AppState>,
     private ordersService: OrdersService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
   ) {
     this.totalCartValue = this.store.select((state) => state.carts.totalValue);
     this.cart = this.store.select((state) => state.products.cart);

@@ -13,11 +13,14 @@ export class ProductEffects {
       mergeMap(() =>
         this.productsService.getProducts().pipe(
           map((products) => loadProductsSuccessAction({ products: products })),
-          catchError((error) => of(loadProductsFailureAction(error)))
-        )
-      )
-    )
+          catchError((error) => of(loadProductsFailureAction(error))),
+        ),
+      ),
+    ),
   );
 
-  constructor(private actions$: Actions, private productsService: ProductsService) {}
+  constructor(
+    private actions$: Actions,
+    private productsService: ProductsService,
+  ) {}
 }

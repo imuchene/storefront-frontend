@@ -60,7 +60,7 @@ export const productReducer = createReducer(
   }),
   on(resetCartAction, () => {
     return { ...initialState, loading: false };
-  })
+  }),
 );
 
 export const reducers: ActionReducerMap<AppState> = {

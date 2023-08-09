@@ -17,7 +17,11 @@ export class AuthService {
     withCredentials: true,
   };
 
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cookieService: CookieService,
+  ) {}
 
   login(login: CustomerLogin): Observable<HttpResponse<any>> {
     return this.http.post<any>(environment.apiUrl + 'auth/login', login, this.httpOptions);

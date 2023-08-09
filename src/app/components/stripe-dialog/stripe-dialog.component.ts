@@ -51,7 +51,7 @@ export class StripeDialogComponent implements OnInit {
     private stripeService: StripeService,
     private store: Store<AppState>,
     private dialog: MatDialog,
-    private snackBarUtil: SnackBarUtil
+    private snackBarUtil: SnackBarUtil,
   ) {
     this.paymentData = data.data;
 

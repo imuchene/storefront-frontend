@@ -17,7 +17,7 @@ export class AutoLogoffService {
     private router: Router,
     private snackBarUtil: SnackBarUtil,
     private ngZone: NgZone,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     if (this.authService.checkLoggedIn()) {
       this.isLoggedIn = true;

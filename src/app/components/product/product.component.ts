@@ -16,7 +16,10 @@ export class ProductComponent {
   loading: Observable<boolean>;
   error: Observable<Error>;
 
-  constructor(private store: Store<AppState>, private snackBarUtil: SnackBarUtil) {
+  constructor(
+    private store: Store<AppState>,
+    private snackBarUtil: SnackBarUtil,
+  ) {
     this.loading = this.store.select((state) => state.products.loading);
 
     this.store.dispatch(loadProductsAction());
