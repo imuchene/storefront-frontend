@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CustomerRegistration } from '../models/customer-registration.model';
 import { CustomerLogin } from '../models/customer-login.model';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
