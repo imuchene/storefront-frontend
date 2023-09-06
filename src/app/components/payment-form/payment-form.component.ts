@@ -62,6 +62,7 @@ export class PaymentFormComponent implements OnInit {
     const order: Order = {
       totalAmount: this.totalValue,
       orderItems: orderItems,
+      paymentMethod: this.paymentMethod,
     };
 
     this.ordersService.createOrder(order).subscribe((result) => {
