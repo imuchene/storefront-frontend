@@ -40,7 +40,7 @@ import { StripeDialogComponent } from './components/stripe-dialog/stripe-dialog.
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
-    }),
+    connectInZone: true}),
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule,

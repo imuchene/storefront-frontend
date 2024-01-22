@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "storefront-frontend:build:production"
+              "buildTarget": "storefront-frontend:build:production"
             },
             "development": {
-              "browserTarget": "storefront-frontend:build:development"
+              "buildTarget": "storefront-frontend:build:development"
             },
             "options": {
               "sslKey": "localhost.key",
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "storefront-frontend:build"
+            "buildTarget": "storefront-frontend:build"
           }
         },
         "test": {
