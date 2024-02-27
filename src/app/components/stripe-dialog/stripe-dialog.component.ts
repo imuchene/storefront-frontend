@@ -3,13 +3,13 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { PaymentIntentResult, StripeElementsOptions, StripePaymentElementOptions } from '@stripe/stripe-js';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
 import { Payment } from '../../models/payment.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers/product.reducer';
 import { resetCartAction } from '../../actions/product.actions';
 import { PaymentStatus } from '../../enums/payment-status.enum';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SnackBarUtil } from 'src/app/utils/snackbar.util';
+import { SnackBarUtil } from '../../../app/utils/snackbar.util';
 
 @Component({
   selector: 'app-stripe-dialog',
@@ -66,10 +66,13 @@ export class StripeDialogComponent implements OnInit {
   }
 
   pay() {
+
     if (this.paying) {
       return;
     }
+
     this.paying = true;
+
     this.stripeService
       .confirmPayment({
         elements: this.stripePaymentElement.elements,

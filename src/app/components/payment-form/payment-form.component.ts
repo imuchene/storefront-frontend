@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, ValidatorFn, ValidationErrors } fro
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers/product.reducer';
 import { Observable } from 'rxjs/internal/Observable';
-import { PaymentMethod } from '../../enums/payment-methods.enum';
+import { PaymentMethods } from '../../enums/payment-methods.enum';
 import { CartItem } from '../../models/cart-item.model';
 import { Product } from '../../models/product.model';
 import { countAndGroupLikeItems } from '../../utils/count-and-group.util';
@@ -12,6 +12,8 @@ import { Order } from '../../models/order.model';
 import { MatDialog } from '@angular/material/dialog';
 import { StripeDialogComponent } from '../stripe-dialog/stripe-dialog.component';
 import { Router } from '@angular/router';
+import { ExpressCheckoutComponent } from '../express-checkout/express-checkout.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-payment-form',
@@ -21,7 +23,7 @@ import { Router } from '@angular/router';
 export class PaymentFormComponent implements OnInit {
   form: FormGroup;
   paymentMethod: string;
-  paymentMethods: string[] = [PaymentMethod.CreditOrDebitCard, PaymentMethod.Mpesa];
+  paymentMethods: string[] = Object.values(PaymentMethods);
   totalCartValue: Observable<number>;
   totalValue: number;
   orderItems: CartItem[];
@@ -33,6 +35,7 @@ export class PaymentFormComponent implements OnInit {
     private ordersService: OrdersService,
     private dialog: MatDialog,
     private router: Router,
+    private bottomSheet: MatBottomSheet,
   ) {
     this.totalCartValue = this.store.select((state) => state.carts.totalValue);
     this.cart = this.store.select((state) => state.products.cart);
@@ -66,13 +69,25 @@ export class PaymentFormComponent implements OnInit {
     };
 
     this.ordersService.createOrder(order).subscribe((result) => {
-      if (result.clientSecret && this.paymentMethod === PaymentMethod.CreditOrDebitCard) {
+
+      if (result.clientSecret && this.paymentMethod === PaymentMethods.CreditOrDebitCard) {
         this.openStripeDialog({
           name: result.customerName,
           amount: this.totalValue,
           clientSecret: result.clientSecret,
         });
       }
+
+      if (this.paymentMethod === PaymentMethods.ExpressCheckout) {
+        this.openExpressCheckoutBottomSheet({
+          name: result.customerName,
+          amount: this.totalValue,
+          clientSecret: result.clientSecret,
+        });
+      }
+
+
+
     });
   }
 
@@ -87,6 +102,10 @@ export class PaymentFormComponent implements OnInit {
       this.form.disable({ onlySelf: true });
       this.router.navigate(['/']);
     });
+  }
+
+  openExpressCheckoutBottomSheet(data: any) {
+   this.bottomSheet.open(ExpressCheckoutComponent, { data: { data }});
   }
 
   checkTotalCartValue(): ValidatorFn {
