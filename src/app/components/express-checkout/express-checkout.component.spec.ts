@@ -8,10 +8,9 @@ describe('ExpressCheckoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExpressCheckoutComponent]
-    })
-    .compileComponents();
-    
+      imports: [ExpressCheckoutComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ExpressCheckoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

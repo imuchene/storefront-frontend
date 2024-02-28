@@ -1,9 +1,8 @@
 <div maxWidth="900">
-  <div color="secondary" section-content-header>
-  </div>
+  <div color="secondary" section-content-header></div>
   <div section-content>
     <ngx-stripe-elements [stripe]="stripe" [elementsOptions]="elementsOptions">
-      <ngx-stripe-express-checkout [options]="options" (clicked)="onClicked($event)" />
+      <ngx-stripe-express-checkout [options]="options" (clicked)="onClicked($event)" (confirm)="onConfirm($event)" />
     </ngx-stripe-elements>
   </div>
 </div>

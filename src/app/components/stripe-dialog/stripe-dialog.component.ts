@@ -66,7 +66,6 @@ export class StripeDialogComponent implements OnInit {
   }
 
   pay() {
-
     if (this.paying) {
       return;
     }
@@ -88,8 +87,6 @@ export class StripeDialogComponent implements OnInit {
       })
       .subscribe({
         next: (result: PaymentIntentResult) => {
-          this.paying = false;
-
           if (result.error) {
             // Show the error to the customer e.g. insufficient funds
             this.snackBarUtil.openSnackBar(String(result.error.message));

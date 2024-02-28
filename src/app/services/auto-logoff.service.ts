@@ -59,12 +59,14 @@ export class AutoLogoffService {
     const diff = timeLeft - now;
     const isTimeout = diff < 0;
 
-    this.ngZone.run(() => {
-      if (isTimeout && this.isLoggedIn) {
-        this.snackBarUtil.openSnackBar('Your session expired due to inactivity. Kindly login again to continue');
-        this.authService.logout();
-        this.router.navigate(['/']);
-      }
-    });
+    if (this.ngZone) {
+      this.ngZone.run(() => {
+        if (isTimeout && this.isLoggedIn) {
+          this.snackBarUtil.openSnackBar('Your session expired due to inactivity. Kindly login again to continue');
+          this.authService.logout();
+          this.router.navigate(['/']);
+        }
+      });
+    }
   }
 }

@@ -69,7 +69,6 @@ export class PaymentFormComponent implements OnInit {
     };
 
     this.ordersService.createOrder(order).subscribe((result) => {
-
       if (result.clientSecret && this.paymentMethod === PaymentMethods.CreditOrDebitCard) {
         this.openStripeDialog({
           name: result.customerName,
@@ -85,9 +84,6 @@ export class PaymentFormComponent implements OnInit {
           clientSecret: result.clientSecret,
         });
       }
-
-
-
     });
   }
 
@@ -98,14 +94,19 @@ export class PaymentFormComponent implements OnInit {
       data: { data },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.form.disable({ onlySelf: true });
       this.router.navigate(['/']);
     });
   }
 
   openExpressCheckoutBottomSheet(data: any) {
-   this.bottomSheet.open(ExpressCheckoutComponent, { data: { data }});
+    const bottomSheetRef = this.bottomSheet.open(ExpressCheckoutComponent, { data: { data } });
+
+    bottomSheetRef.afterDismissed().subscribe(() => {
+      this.form.disable({ onlySelf: true });
+      this.router.navigate(['/']);
+    });
   }
 
   checkTotalCartValue(): ValidatorFn {
