@@ -4,7 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../../reducers/product.reducer';
 import { AuthService } from '../../services/auth.service';
-import { AutoLogoffService } from 'src/app/services/auto-logoff.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SnackBarUtil } from '../../../app/utils/snackbar.util';
+import { AutoLogoffService } from '../../../app/services/auto-logoff.service';
 
 @Component({
   selector: 'app-root',
@@ -22,10 +24,13 @@ export class AppComponent implements OnInit {
     private router: Router,
     private store: Store<AppState>,
     public authService: AuthService,
-    private autoLogoff: AutoLogoffService,
+    private autoLogoff: AutoLogoffService, 
+    private snackBarUtil: SnackBarUtil,
   ) {
     this.totalItems = this.store.select((state) => state.products.count);
     this.totalValue = this.store.select((state) => state.carts.totalValue);
+
+    this.autoLogoff;
   }
 
   ngOnInit(): void {
@@ -48,7 +53,19 @@ export class AppComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+    this.authService.logout().subscribe(
+      {
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        // On logout failure
+        error: (error: HttpErrorResponse) => {
+          this.snackBarUtil.openSnackBar(error);
+        },
+      }
+    );
+
+
+  
   }
 }

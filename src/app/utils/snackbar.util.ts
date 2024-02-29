@@ -14,4 +14,8 @@ export class SnackBarUtil {
       duration: 3000,
     });
   }
+
+  closeSnackBar(){
+    this.snackBar.dismiss();
+  }
 }
