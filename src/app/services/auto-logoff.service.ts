@@ -2,6 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { SnackBarUtil } from '../utils/snackbar.util';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -59,14 +60,22 @@ export class AutoLogoffService {
     const diff = timeLeft - now;
     const isTimeout = diff < 0;
 
-    if (this.ngZone) {
-      this.ngZone.run(() => {
-        if (isTimeout && this.isLoggedIn) {
-          this.snackBarUtil.openSnackBar('Your session expired due to inactivity. Kindly login again to continue');
-          this.authService.logout();
-          this.router.navigate(['/']);
-        }
-      });
-    }
+    this.ngZone.run(() => {
+      if (isTimeout && this.isLoggedIn) {
+        this.authService.logout().subscribe({
+          next: () => {
+            this.router.navigate(['/']);
+            this.isLoggedIn = false;
+            this.snackBarUtil.openSnackBar('Your session expired due to inactivity. Kindly login again to continue');
+          },
+          // On logout failure
+          error: (error: HttpErrorResponse) => {
+            // Todo use a logging service to log the error message
+            this.snackBarUtil.openSnackBar(error);
+            this.router.navigate(['/']);
+          },
+        });
+      }
+    });
   }
 }

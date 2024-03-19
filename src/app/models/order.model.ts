@@ -1,4 +1,5 @@
 export interface Order {
+  id: string;
   totalAmount: number;
   orderItems: OrderItem[];
   paymentMethod: string;

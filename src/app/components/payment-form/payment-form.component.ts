@@ -14,6 +14,7 @@ import { StripeDialogComponent } from '../stripe-dialog/stripe-dialog.component'
 import { Router } from '@angular/router';
 import { ExpressCheckoutComponent } from '../express-checkout/express-checkout.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-payment-form',
@@ -28,6 +29,7 @@ export class PaymentFormComponent implements OnInit {
   totalValue: number;
   orderItems: CartItem[];
   cart: Observable<Product[]>;
+  orderId: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +51,8 @@ export class PaymentFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       paymentRadio: ['', [Validators.required, this.checkTotalCartValue()]],
     });
+
+    this.orderId = uuid();
   }
 
   pay() {
@@ -63,6 +67,7 @@ export class PaymentFormComponent implements OnInit {
     }));
 
     const order: Order = {
+      id: this.orderId,
       totalAmount: this.totalValue,
       orderItems: orderItems,
       paymentMethod: this.paymentMethod,

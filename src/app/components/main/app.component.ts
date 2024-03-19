@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private store: Store<AppState>,
     public authService: AuthService,
-    private autoLogoff: AutoLogoffService, 
+    private autoLogoff: AutoLogoffService,
     private snackBarUtil: SnackBarUtil,
   ) {
     this.totalItems = this.store.select((state) => state.products.count);
@@ -53,19 +53,14 @@ export class AppComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.logout().subscribe(
-      {
-        next: () => {
-          this.router.navigate(['/']);
-        },
-        // On logout failure
-        error: (error: HttpErrorResponse) => {
-          this.snackBarUtil.openSnackBar(error);
-        },
-      }
-    );
-
-
-  
+    this.authService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      // On logout failure
+      error: (error: HttpErrorResponse) => {
+        this.snackBarUtil.openSnackBar(error);
+      },
+    });
   }
 }

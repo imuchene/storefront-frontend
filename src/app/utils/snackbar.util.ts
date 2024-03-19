@@ -15,7 +15,7 @@ export class SnackBarUtil {
     });
   }
 
-  closeSnackBar(){
+  closeSnackBar() {
     this.snackBar.dismiss();
   }
 }

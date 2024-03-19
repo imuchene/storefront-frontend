@@ -49,6 +49,7 @@ export class AuthService {
     this.cookieService.set(CookieNameEnum.IsLoggedIn, 'true', cookieExpiry);
   }
 
+  // Todo Add logic that fetches this info from the API
   checkLoggedIn(): boolean {
     if (this.cookieService.get(CookieNameEnum.IsLoggedIn) === 'true') {
       return true;
