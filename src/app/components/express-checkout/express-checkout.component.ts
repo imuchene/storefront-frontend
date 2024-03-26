@@ -5,7 +5,7 @@ import {
   StripeExpressCheckoutElementConfirmEvent,
   StripeExpressCheckoutElementOptions,
 } from '@stripe/stripe-js';
-import { StripeElementsDirective, StripeExpressCheckoutComponent, injectStripe } from 'ngx-stripe';
+import { StripeExpressCheckoutComponent, injectStripe } from 'ngx-stripe';
 import { environment } from '../../../environments/environment';
 import { Payment } from 'src/app/models/payment.model';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -16,8 +16,6 @@ import { resetCartAction } from 'src/app/actions/product.actions';
 
 @Component({
   selector: 'app-express-checkout',
-  standalone: true,
-  imports: [StripeElementsDirective, StripeExpressCheckoutComponent],
   templateUrl: './express-checkout.component.html',
   styleUrl: './express-checkout.component.scss',
 })

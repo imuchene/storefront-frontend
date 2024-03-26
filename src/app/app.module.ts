@@ -18,8 +18,9 @@ import { RegistrationFormComponent } from './components/registration-form/regist
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { NgxStripeModule } from 'ngx-stripe';
+import { NgxStripeModule, StripeElementsDirective, StripeExpressCheckoutComponent } from 'ngx-stripe';
 import { StripeDialogComponent } from './components/stripe-dialog/stripe-dialog.component';
+import { ExpressCheckoutComponent } from './components/express-checkout/express-checkout.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { StripeDialogComponent } from './components/stripe-dialog/stripe-dialog.
     LoginFormComponent,
     RegistrationFormComponent,
     StripeDialogComponent,
+    ExpressCheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,8 @@ import { StripeDialogComponent } from './components/stripe-dialog/stripe-dialog.
     NgxStripeModule.forRoot(environment.stripePublicKey, {
       apiVersion: environment.stripeApiVersion,
     }),
+    StripeElementsDirective,
+    StripeExpressCheckoutComponent,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
