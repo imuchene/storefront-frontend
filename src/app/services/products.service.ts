@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Product } from '../models/product.model';
 
@@ -10,7 +10,7 @@ import { Product } from '../models/product.model';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  getProducts() {
+  getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.apiUrl + 'products').pipe(delay(500));
   }
 }

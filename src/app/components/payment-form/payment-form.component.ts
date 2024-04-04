@@ -73,22 +73,24 @@ export class PaymentFormComponent implements OnInit {
       paymentMethod: this.paymentMethod,
     };
 
-    this.ordersService.createOrder(order).subscribe((result) => {
-      if (result.clientSecret && this.paymentMethod === PaymentMethods.CreditOrDebitCard) {
-        this.openStripeDialog({
-          name: result.customerName,
-          amount: this.totalValue,
-          clientSecret: result.clientSecret,
-        });
-      }
+    this.ordersService.createOrder(order).subscribe({
+      next: (result) => {
+        if (result.clientSecret && this.paymentMethod === PaymentMethods.CreditOrDebitCard) {
+          this.openStripeDialog({
+            name: result.customerName,
+            amount: this.totalValue,
+            clientSecret: result.clientSecret,
+          });
+        }
 
-      if (this.paymentMethod === PaymentMethods.ExpressCheckout) {
-        this.openExpressCheckoutBottomSheet({
-          name: result.customerName,
-          amount: this.totalValue,
-          clientSecret: result.clientSecret,
-        });
-      }
+        if (this.paymentMethod === PaymentMethods.ExpressCheckout) {
+          this.openExpressCheckoutBottomSheet({
+            name: result.customerName,
+            amount: this.totalValue,
+            clientSecret: result.clientSecret,
+          });
+        }
+      },
     });
   }
 

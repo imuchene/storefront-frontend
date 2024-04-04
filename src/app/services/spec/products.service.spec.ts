@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { createSpyFromClass, Spy} from 'jasmine-auto-spies';
+import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { ProductsService } from '../products.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
-describe('ProductsService', () => {
-  
+describe('Products Service', () => {
   let service: ProductsService;
   let httpSpy: Spy<HttpClient>;
-  const mockProductObject = {
+
+  const mockProduct = {
     name: 'Test Product 03',
     unitPrice: 10.13,
     description: 'Test Product 03',
@@ -19,24 +19,22 @@ describe('ProductsService', () => {
     deletedAt: null,
   };
 
-  const mockProducts = Array(5).fill(mockProductObject);
+  const mockProducts = Array(5).fill(mockProduct);
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
       providers: [
         ProductsService,
         {
           provide: HttpClient,
           useValue: createSpyFromClass(HttpClient),
-        }
+        },
       ],
-     imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
     });
 
     service = TestBed.inject(ProductsService);
     httpSpy = TestBed.inject<any>(HttpClient);
-
   });
 
   it('should be created', () => {
@@ -51,9 +49,9 @@ describe('ProductsService', () => {
         expect(products).toBe(mockProducts);
         done();
       },
-      error: (e) =>  done.fail,
+      error: (e) => done.fail,
     });
 
     expect(httpSpy.get.calls.count()).toBe(1);
-  })
+  });
 });
