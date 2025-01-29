@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { ProductsService } from '../products.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('Products Service', () => {
   let service: ProductsService;
@@ -23,15 +23,17 @@ describe('Products Service', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
+    imports: [],
+    providers: [
         ProductsService,
         {
-          provide: HttpClient,
-          useValue: createSpyFromClass(HttpClient),
+            provide: HttpClient,
+            useValue: createSpyFromClass(HttpClient),
         },
-      ],
-      imports: [HttpClientTestingModule],
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
 
     service = TestBed.inject(ProductsService);
     httpSpy = TestBed.inject<any>(HttpClient);

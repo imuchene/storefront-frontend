@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/main/app.component';
 import { StoreModule } from '@ngrx/store';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
 import { reducers } from './reducers/product.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -23,38 +23,35 @@ import { StripeDialogComponent } from './components/stripe-dialog/stripe-dialog.
 import { ExpressCheckoutComponent } from './components/express-checkout/express-checkout.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductComponent,
-    CartComponent,
-    PaymentFormComponent,
-    LoginFormComponent,
-    RegistrationFormComponent,
-    StripeDialogComponent,
-    ExpressCheckoutComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot(reducers, {}),
-    EffectsModule.forRoot([ProductEffects]),
-    HttpClientModule,
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-      connectInZone: true,
-    }),
-    MaterialModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxStripeModule.forRoot(environment.stripePublicKey, {
-      apiVersion: environment.stripeApiVersion,
-    }),
-    StripeElementsDirective,
-    StripeExpressCheckoutComponent,
-  ],
-  providers: [CookieService],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        ProductComponent,
+        CartComponent,
+        PaymentFormComponent,
+        LoginFormComponent,
+        RegistrationFormComponent,
+        StripeDialogComponent,
+        ExpressCheckoutComponent,
+    ],
+    bootstrap: [AppComponent], 
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        StoreModule.forRoot(reducers, {}),
+        EffectsModule.forRoot([ProductEffects]),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: environment.production,
+            connectInZone: true,
+        }),
+        MaterialModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxStripeModule.forRoot(environment.stripePublicKey, {
+            apiVersion: environment.stripeApiVersion,
+        }),
+        StripeElementsDirective,
+        StripeExpressCheckoutComponent], providers: [CookieService, provideHttpClient(withInterceptorsFromDi())]
 })
-export class AppModule {}
+export class AppModule { }
