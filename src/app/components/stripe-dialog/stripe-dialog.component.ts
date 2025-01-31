@@ -12,9 +12,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { SnackBarUtil } from '../../../app/utils/snackbar.util';
 
 @Component({
-  selector: 'app-stripe-dialog',
-  templateUrl: './stripe-dialog.component.html',
-  styleUrls: ['./stripe-dialog.component.scss'],
+    selector: 'app-stripe-dialog',
+    templateUrl: './stripe-dialog.component.html',
+    styleUrls: ['./stripe-dialog.component.scss'],
+    standalone: false
 })
 export class StripeDialogComponent implements OnInit {
   @ViewChild(StripePaymentElementComponent)

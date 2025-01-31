@@ -17,9 +17,10 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { v4 as uuid } from 'uuid';
 
 @Component({
-  selector: 'app-payment-form',
-  templateUrl: './payment-form.component.html',
-  styleUrls: ['./payment-form.component.scss'],
+    selector: 'app-payment-form',
+    templateUrl: './payment-form.component.html',
+    styleUrls: ['./payment-form.component.scss'],
+    standalone: false
 })
 export class PaymentFormComponent implements OnInit {
   form: FormGroup;

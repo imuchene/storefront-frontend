@@ -9,9 +9,10 @@ import { SnackBarUtil } from '../../../app/utils/snackbar.util';
 import { AutoLogoffService } from '../../../app/services/auto-logoff.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   title = 'storefront-frontend';

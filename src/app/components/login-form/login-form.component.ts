@@ -10,9 +10,10 @@ import { Observable, catchError } from 'rxjs';
 import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
+    selector: 'app-login-form',
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./login-form.component.scss'],
+    standalone: false
 })
 export class LoginFormComponent {
   form: FormGroup;

@@ -7,9 +7,10 @@ import { AppState } from '../../reducers/product.reducer';
 import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss'],
+    selector: 'app-product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.scss'],
+    standalone: false
 })
 export class ProductComponent {
   products: Observable<Product[]>;

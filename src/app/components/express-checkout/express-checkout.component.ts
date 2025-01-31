@@ -15,9 +15,10 @@ import { AppState } from '../../reducers/product.reducer';
 import { resetCartAction } from 'src/app/actions/product.actions';
 
 @Component({
-  selector: 'app-express-checkout',
-  templateUrl: './express-checkout.component.html',
-  styleUrl: './express-checkout.component.scss',
+    selector: 'app-express-checkout',
+    templateUrl: './express-checkout.component.html',
+    styleUrl: './express-checkout.component.scss',
+    standalone: false
 })
 export class ExpressCheckoutComponent implements OnInit {
   paymentData: Payment;

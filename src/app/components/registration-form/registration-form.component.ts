@@ -8,9 +8,10 @@ import { CustomerRegistration } from '../../models/customer-registration.model';
 import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
-  selector: 'app-registration-form',
-  templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.scss'],
+    selector: 'app-registration-form',
+    templateUrl: './registration-form.component.html',
+    styleUrls: ['./registration-form.component.scss'],
+    standalone: false
 })
 export class RegistrationFormComponent {
   form: FormGroup;
