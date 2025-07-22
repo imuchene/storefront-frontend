@@ -48,9 +48,7 @@ import { ExpressCheckoutComponent } from './components/express-checkout/express-
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
-        NgxStripeModule.forRoot(environment.stripePublicKey, {
-            apiVersion: environment.stripeApiVersion,
-        }),
+        NgxStripeModule.forRoot(environment.stripePublicKey),
         StripeElementsDirective,
         StripeExpressCheckoutComponent], providers: [CookieService, provideHttpClient(withInterceptorsFromDi())]
 })
