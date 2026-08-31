@@ -21,8 +21,12 @@
     </mat-menu>
     <span class="example-toolbar" routerLink="">Storefront Frontend</span>
     <span class="example-spacer"></span>
-    <a mat-button *ngIf="!authService.isLoggedIn" routerLink="/login">Login</a>
-    <a mat-button *ngIf="authService.isLoggedIn" [routerLink]="" (click)="logOut()">Logout</a>
+    @if (!authService.isLoggedIn) {
+      <a mat-button routerLink="/login">Login</a>
+    }
+    @if (authService.isLoggedIn) {
+      <a mat-button [routerLink]="" (click)="logOut()">Logout</a>
+    }
     <button
       mat-flat-button
       class="example-icon favorite-icon"

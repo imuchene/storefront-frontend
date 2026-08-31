@@ -2,19 +2,26 @@
 <mat-dialog-content class="mat-typography">
   <h3>Add Payment Details Below:</h3>
   <br />
-  <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
+  @if (elementsOptions?.clientSecret; as clientSecret) {
     <ngx-stripe-payment
       [options]="options"
       [elementsOptions]="elementsOptions"
       [clientSecret]="clientSecret"
     ></ngx-stripe-payment>
-  </ng-container>
+  }
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button mat-raised-button color="primary" [disabled]="paying" (click)="pay()">
-    <span *ngIf="!paying">
-      PAY <span *ngIf="totalAmount">${{ totalAmount }}</span>
-    </span>
-    <span *ngIf="paying">PROCESSING...</span>
+    @if (!paying) {
+      <span>
+        PAY
+        @if (totalAmount) {
+          <span>${{ totalAmount }}</span>
+        }
+      </span>
+    }
+    @if (paying) {
+      <span>PROCESSING...</span>
+    }
   </button>
 </mat-dialog-actions>

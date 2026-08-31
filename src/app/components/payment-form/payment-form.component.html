@@ -7,9 +7,11 @@
         class="example-radio-group"
         formControlName="paymentRadio"
       >
-        <mat-radio-button class="example-radio-button" *ngFor="let method of paymentMethods" [value]="method">
-          {{ method }}
-        </mat-radio-button>
+        @for (method of paymentMethods; track method) {
+          <mat-radio-button class="example-radio-button" [value]="method">
+            {{ method }}
+          </mat-radio-button>
+        }
       </mat-radio-group>
     </form>
     <div>Your payment method is: {{ paymentMethod }}</div>

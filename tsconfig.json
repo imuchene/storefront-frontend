@@ -17,10 +17,6 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": [
-      "ES2020",
-      "dom"
-    ],
     "esModuleInterop": true,
     "strictPropertyInitialization": false,
     "useDefineForClassFields": false
