@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { CustomerLogin } from '../../models/customer-login.model';
 import { AppState } from '../../reducers/product.reducer';
 import { Store } from '@ngrx/store';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SnackBarUtil } from 'src/app/utils/snackbar.util';
 
 @Component({
