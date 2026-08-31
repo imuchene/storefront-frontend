@@ -2,7 +2,7 @@
 <mat-dialog-content class="mat-typography">
   <h3>Add Payment Details Below:</h3>
   <br />
-  @if (elementsOptions?.clientSecret; as clientSecret) {
+  @if (elementsOptions.clientSecret; as clientSecret) {
     <ngx-stripe-payment
       [options]="options"
       [elementsOptions]="elementsOptions"
