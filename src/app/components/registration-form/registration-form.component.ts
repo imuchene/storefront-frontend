@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CustomerRegistration } from '../../models/customer-registration.model';
-import { SnackBarUtil } from 'src/app/utils/snackbar.util';
+import { SnackBarUtil } from '../../utils/snackbar.util';
 
 @Component({
     selector: 'app-registration-form',

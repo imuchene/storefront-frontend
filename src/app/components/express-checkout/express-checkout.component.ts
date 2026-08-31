@@ -7,12 +7,12 @@ import {
 } from '@stripe/stripe-js';
 import { StripeExpressCheckoutComponent, injectStripe } from 'ngx-stripe';
 import { environment } from '../../../environments/environment';
-import { Payment } from 'src/app/models/payment.model';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SnackBarUtil } from '../../../app/utils/snackbar.util';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers/product.reducer';
-import { resetCartAction } from 'src/app/actions/product.actions';
+import { resetCartAction } from '../../actions/product.actions';
+import { Payment } from '../../models/payment.model';
 
 @Component({
     selector: 'app-express-checkout',

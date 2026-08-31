@@ -7,7 +7,7 @@ import { CustomerLogin } from '../../models/customer-login.model';
 import { AppState } from '../../reducers/product.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { SnackBarUtil } from 'src/app/utils/snackbar.util';
+import { SnackBarUtil } from '../../utils/snackbar.util';
 
 @Component({
     selector: 'app-login-form',

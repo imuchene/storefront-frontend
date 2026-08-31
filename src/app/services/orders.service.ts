@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Order } from '../models/order.model';
 import { Observable } from 'rxjs';
 import { OrderResponse } from '../models/responses/order-response.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

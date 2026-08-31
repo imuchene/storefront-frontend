@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../models/product.model';
 import { addProductAction, loadProductsAction } from '../../actions/product.actions';
 import { AppState } from '../../reducers/product.reducer';
-import { SnackBarUtil } from 'src/app/utils/snackbar.util';
+import { SnackBarUtil } from '../../utils/snackbar.util';
 
 @Component({
     selector: 'app-product',
